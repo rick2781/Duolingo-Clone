@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/layout_progress_bar"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp">
+
+    <TextView
+        android:id="@+id/translate_this_sentence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Translate this sentence"
+        android:textStyle="bold"
+        android:textSize="26sp"
+        android:textColor="#303030"
+        android:layout_marginBottom="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/translate_this_sentence">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_play_voice_icon"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ella come manzanas"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:textSize="18sp"
+            android:textColor="#303030"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
