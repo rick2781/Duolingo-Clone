@@ -18,6 +18,7 @@
         android:layout_marginBottom="16dp" />
 
     <LinearLayout
+        android:layout_marginBottom="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/translate_this_sentence">
