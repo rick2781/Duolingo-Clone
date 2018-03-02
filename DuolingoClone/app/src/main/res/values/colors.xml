@@ -4,6 +4,12 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <!--Custom view-->
     <color name="empty_view">#848484</color>
     <color name="custom_view_text_color">#000000</color>
+
+    <!--Button-->
+    <color name="green_button">#30ce00</color>
+    <color name="grey_button">#e1e1e1</color>
+    <color name="white_text">#fff</color>
 </resources>
