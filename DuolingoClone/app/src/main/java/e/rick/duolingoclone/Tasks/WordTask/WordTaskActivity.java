@@ -1,6 +1,9 @@
 package e.rick.duolingoclone.Tasks.WordTask;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.PorterDuff;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +19,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.nex3z.flowlayout.FlowLayout;
 
 import java.util.ArrayList;
@@ -25,6 +30,8 @@ import java.util.Random;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import e.rick.duolingoclone.R;
+import e.rick.duolingoclone.Utils.ActivityNavigation;
+import e.rick.duolingoclone.Utils.QuestionAnswer;
 
 public class WordTaskActivity extends AppCompatActivity {
 
@@ -51,11 +58,14 @@ public class WordTaskActivity extends AppCompatActivity {
 
     QuestionModel questionModel;
 
-    ArrayList<String> question = new ArrayList<>();
-    ArrayList<String> answer = new ArrayList<>();
     ArrayList<String> words = new ArrayList<>();
+    ArrayList<String> answers = QuestionAnswer.getInstance().getAnswer();
 
     Random random = new Random();
+
+    int progressBarValue;
+
+    Context context = WordTaskActivity.this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +104,18 @@ public class WordTaskActivity extends AppCompatActivity {
         checkButton.setEnabled(false);
         checkButton.setTextColor(getResources().getColor(R.color.white_text));
 
-        randomizeInitialData();
+        questionModel = QuestionAnswer.getInstance().getRandomQuestionObj();
+
+        Intent intent = getIntent();
+
+        progressBarValue = 0;
+
+        if (intent.getExtras() != null) {
+
+            progressBarValue = intent.getExtras().getInt("progressBarValue");
+
+            progressBar.setProgress(progressBarValue);
+        }
 
         tvQuestion.setText(questionModel.getQuestion());
 
@@ -136,7 +157,9 @@ public class WordTaskActivity extends AppCompatActivity {
 
                         Toast.makeText(WordTaskActivity.this, "You Are Correct!", Toast.LENGTH_SHORT).show();
 
-                        progressBar.setProgress(progressBar.getProgress()+10);
+                        progressBarValue += 10;
+
+                        progressBar.setProgress(progressBarValue);
                         checkButton.setText("continue");
 
                         lockViews();
@@ -145,7 +168,16 @@ public class WordTaskActivity extends AppCompatActivity {
 
                         Toast.makeText(WordTaskActivity.this, "That's Not Correct. \n" + questionModel.getAnswer(), Toast.LENGTH_SHORT).show();
 
-                        progressBar.setProgress(progressBar.getProgress()-10);
+                        if (progressBarValue > 10) {
+
+                            progressBarValue -= 10;
+
+                        } else {
+
+                            progressBarValue = 0;
+                        }
+
+                        progressBar.setProgress(progressBarValue);
                         checkButton.setText("continue");
 
                         lockViews();
@@ -153,7 +185,7 @@ public class WordTaskActivity extends AppCompatActivity {
 
                 } else if (checkButton.getText().equals("continue")) {
 
-                    recreate();
+                    ActivityNavigation.getInstance(context, progressBarValue).takeToRandomTask();
                 }
             }
         });
@@ -197,36 +229,7 @@ public class WordTaskActivity extends AppCompatActivity {
 
     }
 
-    private void randomizeInitialData() {
-
-        //We could do this using Map<String, String> or BiMap for Question and Answer as well
-
-        //Question
-        question.add("Ella come manzanas");
-        question.add("El come");
-        question.add("Usted es una mujer");
-        question.add("Tu eres un nino");
-        question.add("Que paso");
-        question.add("Yo soy un nino");
-
-        //Answer
-        answer.add("She eats apple");
-        answer.add("He eats");
-        answer.add("You are a woman");
-        answer.add("You are a boy");
-        answer.add("What happened");
-        answer.add("I am a boy");
-
-        int randomIndex = random.nextInt(question.size());
-
-        questionModel = new QuestionModel(
-                question.get(randomIndex),
-                answer.get(randomIndex));
-    }
-
     private void randomizeCustomWords() {
-
-        ArrayList<CustomWord> customWords = new ArrayList<>();
 
         String[] wordsFromSentence = questionModel.getAnswer().split(" ");
 
@@ -259,7 +262,7 @@ public class WordTaskActivity extends AppCompatActivity {
 
     private void addArrayWords() {
 
-        String[] wordsFromAnswerArray = answer.get(random.nextInt(answer.size())).split(" ");
+        String[] wordsFromAnswerArray = answers.get(random.nextInt(answers.size())).split(" ");
 
         for (int i = 0; i < 2; i++) {
 
@@ -270,5 +273,23 @@ public class WordTaskActivity extends AppCompatActivity {
                 words.add(word);
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        new MaterialDialog.Builder(this)
+                .title("Are you sure about that?")
+                .content("All progress in this lesson will be lost.")
+                .positiveText("QUIT")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+
+                        finish();
+                    }
+                })
+                .negativeText("CANCEL")
+                .show();
     }
 }
