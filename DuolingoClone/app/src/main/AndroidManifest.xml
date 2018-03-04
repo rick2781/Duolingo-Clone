@@ -19,6 +19,8 @@
 
         <activity android:name=".Tasks.TranslateSentenceTask.TSTaskActivity"
             android:windowSoftInputMode="adjustPan"/>
+
+        <activity android:name=".Tasks.TakePairTask.TapPairActivity" />
     </application>
 
 </manifest>

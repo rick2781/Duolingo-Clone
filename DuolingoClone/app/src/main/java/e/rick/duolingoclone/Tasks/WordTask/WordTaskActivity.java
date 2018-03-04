@@ -1,19 +1,16 @@
 package e.rick.duolingoclone.Tasks.WordTask;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,6 +19,7 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.nex3z.flowlayout.FlowLayout;
+import com.orhanobut.hawk.Hawk;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,9 +27,11 @@ import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import e.rick.duolingoclone.Model.QuestionModel;
 import e.rick.duolingoclone.R;
+import e.rick.duolingoclone.Tasks.CustomWord;
 import e.rick.duolingoclone.Utils.ActivityNavigation;
-import e.rick.duolingoclone.Utils.QuestionAnswer;
+import e.rick.duolingoclone.Model.QuestionAnswer;
 
 public class WordTaskActivity extends AppCompatActivity {
 
@@ -102,17 +102,16 @@ public class WordTaskActivity extends AppCompatActivity {
     private void initData() {
 
         checkButton.setEnabled(false);
-        checkButton.setTextColor(getResources().getColor(R.color.white_text));
 
         questionModel = QuestionAnswer.getInstance().getRandomQuestionObj();
 
-        Intent intent = getIntent();
+        Hawk.init(this).build();
 
         progressBarValue = 0;
 
-        if (intent.getExtras() != null) {
+        if (Hawk.get("progressBarValue") != null) {
 
-            progressBarValue = intent.getExtras().getInt("progressBarValue");
+            progressBarValue = Hawk.get("progressBarValue");
 
             progressBar.setProgress(progressBarValue);
         }
@@ -160,6 +159,9 @@ public class WordTaskActivity extends AppCompatActivity {
                         progressBarValue += 10;
 
                         progressBar.setProgress(progressBarValue);
+
+                        Hawk.put("progressBarValue", progressBarValue);
+
                         checkButton.setText("continue");
 
                         lockViews();
@@ -178,6 +180,9 @@ public class WordTaskActivity extends AppCompatActivity {
                         }
 
                         progressBar.setProgress(progressBarValue);
+
+                        Hawk.put("progressBarValue", progressBarValue);
+
                         checkButton.setText("continue");
 
                         lockViews();
@@ -185,7 +190,16 @@ public class WordTaskActivity extends AppCompatActivity {
 
                 } else if (checkButton.getText().equals("continue")) {
 
-                    ActivityNavigation.getInstance(context, progressBarValue).takeToRandomTask();
+                    if (progressBarValue < 100) {
+
+                        ActivityNavigation.getInstance(context).takeToRandomTask();
+
+                    } else {
+
+                        progressBarValue = 0;
+
+                        Hawk.put("progressBarValue", progressBarValue);
+                    }
                 }
             }
         });
@@ -286,10 +300,26 @@ public class WordTaskActivity extends AppCompatActivity {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
 
+                        progressBarValue = 0;
+
+                        Hawk.put("progressBarValue", progressBarValue);
+
                         finish();
                     }
                 })
                 .negativeText("CANCEL")
                 .show();
+    }
+
+    @Override
+    protected void onStop() {
+
+        progressBarValue = 0;
+
+        Hawk.put("progressBarValue", progressBarValue);
+
+        finish();
+
+        super.onStop();
     }
 }

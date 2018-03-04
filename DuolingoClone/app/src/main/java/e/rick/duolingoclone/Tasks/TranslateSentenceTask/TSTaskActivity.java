@@ -1,9 +1,9 @@
 package e.rick.duolingoclone.Tasks.TranslateSentenceTask;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -16,14 +16,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.orhanobut.hawk.Hawk;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import e.rick.duolingoclone.R;
-import e.rick.duolingoclone.Tasks.WordTask.CustomWord;
-import e.rick.duolingoclone.Tasks.WordTask.QuestionModel;
-import e.rick.duolingoclone.Tasks.WordTask.WordTaskActivity;
+import e.rick.duolingoclone.Model.QuestionModel;
 import e.rick.duolingoclone.Utils.ActivityNavigation;
-import e.rick.duolingoclone.Utils.QuestionAnswer;
+import e.rick.duolingoclone.Model.QuestionAnswer;
 
 /**
  * Created by Rick on 3/2/2018.
@@ -52,7 +54,7 @@ public class TSTaskActivity extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.translate_sentence_activity);
+        setContentView(R.layout.activity_translate_sentence);
 
         ButterKnife.bind(this);
 
@@ -62,17 +64,16 @@ public class TSTaskActivity extends AppCompatActivity{
     private void initData() {
 
         checkButton.setEnabled(false);
-        checkButton.setTextColor(getResources().getColor(R.color.white_text));
 
         questionModel = QuestionAnswer.getInstance().getRandomQuestionObj();
 
-        Intent intent = getIntent();
-
         progressBarValue = 0;
 
-        if (intent.getExtras() != null) {
+        Hawk.init(this).build();
 
-            progressBarValue = intent.getExtras().getInt("progressBarValue");
+        if (Hawk.get("progressBarValue") != null) {
+
+            progressBarValue = Hawk.get("progressBarValue");
 
             progressBar.setProgress(progressBarValue);
         }
@@ -93,13 +94,16 @@ public class TSTaskActivity extends AppCompatActivity{
 
                 if (checkButton.getText().equals("check")) {
 
-                    if (questionModel.getAnswer().equals(userAnswer)) {
+                    if (questionModel.getAnswer().toLowerCase().equals(userAnswer.toLowerCase())) {
 
                         Toast.makeText(context, "You Are Correct!", Toast.LENGTH_SHORT).show();
 
                         progressBarValue += 10;
 
                         progressBar.setProgress(progressBarValue);
+
+                        Hawk.put("progressBarValue", progressBarValue);
+
                         checkButton.setText("continue");
 
                         lockEditText();
@@ -108,9 +112,19 @@ public class TSTaskActivity extends AppCompatActivity{
 
                         Toast.makeText(context, "That's not correct!" + questionModel.getAnswer(), Toast.LENGTH_SHORT).show();
 
-                        progressBarValue -= 10;
+                        if (progressBarValue > 10) {
+
+                            progressBarValue -= 10;
+
+                        } else {
+
+                            progressBarValue = 0;
+                        }
 
                         progressBar.setProgress(progressBarValue);
+
+                        Hawk.put("progressBarValue", progressBarValue);
+
                         checkButton.setText("continue");
 
                         lockEditText();
@@ -118,7 +132,16 @@ public class TSTaskActivity extends AppCompatActivity{
 
                 } else if (checkButton.getText().equals("continue")) {
 
-                    ActivityNavigation.getInstance(context, progressBarValue).takeToRandomTask();
+                    if (progressBarValue < 100) {
+
+                        ActivityNavigation.getInstance(context).takeToRandomTask();
+
+                    } else {
+
+                        progressBarValue = 0;
+
+                        Hawk.put("progressBarValue", progressBarValue);
+                    }
 
                 }
             }
@@ -164,5 +187,39 @@ public class TSTaskActivity extends AppCompatActivity{
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        new MaterialDialog.Builder(this)
+                .title("Are you sure about that?")
+                .content("All progress in this lesson will be lost.")
+                .positiveText("QUIT")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+
+                        progressBarValue = 0;
+
+                        Hawk.put("progressBarValue", progressBarValue);
+
+                        finish();
+                    }
+                })
+                .negativeText("CANCEL")
+                .show();
+    }
+
+    @Override
+    protected void onStop() {
+
+        progressBarValue = 0;
+
+        Hawk.put("progressBarValue", progressBarValue);
+
+        finish();
+
+        super.onStop();
     }
 }

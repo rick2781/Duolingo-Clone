@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_layout"
@@ -15,27 +16,14 @@
         android:id="@+id/task_default_body"
         layout="@layout/task_default_body"/>
 
-    <FrameLayout
-        android:id="@+id/frame_layout"
+    <EditText
+        android:id="@+id/user_answer"
+        android:hint="Type the English translation"
         android:layout_below="@+id/task_default_body"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.nex3z.flowlayout.FlowLayout
-            android:id="@+id/sentence_line"
-            android:layout_width="match_parent"
-            android:layout_height="115dp"
-            app:flFlow="true"/>
-
-        <View
-            style="@style/split_line_horizontal"
-            android:layout_marginTop="50dp" />
-
-        <View
-            style="@style/split_line_horizontal"
-            android:layout_marginTop="105dp" />
-
-    </FrameLayout>
+        android:layout_height="250dp"
+        android:gravity="start"
+        android:background="@drawable/custom_word_border"/>
 
     <Button
         android:id="@+id/check_button"

@@ -9,6 +9,7 @@ import com.nex3z.flowlayout.FlowLayout;
 import java.util.ArrayList;
 
 import e.rick.duolingoclone.R;
+import e.rick.duolingoclone.Tasks.CustomWord;
 
 /**
  * Created by Rick on 2/26/2018.
