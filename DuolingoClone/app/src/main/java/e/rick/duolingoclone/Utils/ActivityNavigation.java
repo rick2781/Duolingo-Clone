@@ -6,9 +6,9 @@ import android.content.Intent;
 import java.util.ArrayList;
 import java.util.Random;
 
-import e.rick.duolingoclone.Tasks.TakePairTask.TapPairActivity;
-import e.rick.duolingoclone.Tasks.TranslateSentenceTask.TSTaskActivity;
-import e.rick.duolingoclone.Tasks.WordTask.WordTaskActivity;
+import e.rick.duolingoclone.Presentation.Tasks.TakePairTask.TapPairActivity;
+import e.rick.duolingoclone.Presentation.Tasks.TranslateSentenceTask.TSTaskActivity;
+import e.rick.duolingoclone.Presentation.Tasks.WordTask.WordTaskActivity;
 
 /**
  * Created by Rick on 3/2/2018.

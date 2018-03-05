@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Tasks.WordTask.WordTaskActivity">
+        <activity android:name=".Presentation.Tasks.WordTask.WordTaskActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,10 +17,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Tasks.TranslateSentenceTask.TSTaskActivity"
+        <activity android:name=".Presentation.Tasks.TranslateSentenceTask.TSTaskActivity"
             android:windowSoftInputMode="adjustPan"/>
 
-        <activity android:name=".Tasks.TakePairTask.TapPairActivity" />
+        <activity android:name=".Presentation.Tasks.TakePairTask.TapPairActivity" />
+
+        <activity android:name=".Presentation.Activity.LessonCompletedActivity" />
     </application>
 
 </manifest>

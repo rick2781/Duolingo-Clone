@@ -14,4 +14,16 @@
         <item name="android:background">@android:color/darker_gray</item>
     </style>
 
+    <style name="week_bars">
+        <item name="android:layout_margin">8dp</item>
+    </style>
+    
+    <style name="week_progress_bars">
+        <item name="background_progress_color">@color/default_bar_background_color</item>
+        <item name="foreground_progress_gradient_colors">@array/gradient_colors</item>
+        <item name="foreground_progress_thickness">8</item>
+        <item name="background_progress_thickness">8</item>
+        <item name="rounded_corner">true</item>
+    </style>
+
 </resources>

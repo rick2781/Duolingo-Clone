@@ -14,4 +14,20 @@
     <color name="white_text">#fff</color>
 
     <color name="blue_pair">#00c2ed</color>
+
+    <!-- Progress Bar -->
+    <array name="gradient_colors">
+        <item name="progress_start">#fff953</item>
+        <item name="progress_center">#ff8000</item>
+        <item name="progress_end">#ff5100</item>
+    </array>
+
+    <color name="default_bar_background_color">#cfd8dc</color>
+
+    <color name="progress_start">#fff953</color>
+    <color name="progress_center">#ff8000</color>
+    <color name="progress_end">#ff5100</color>
+
+    <!-- Text -->
+    <color name="week_letter">#757575</color>
 </resources>
