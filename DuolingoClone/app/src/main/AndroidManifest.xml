@@ -20,9 +20,11 @@
         <activity android:name=".Presentation.Tasks.TranslateSentenceTask.TSTaskActivity"
             android:windowSoftInputMode="adjustPan"/>
 
-        <activity android:name=".Presentation.Tasks.TakePairTask.TapPairActivity" />
+        <activity android:name=".Presentation.Tasks.TapPairTask.TapPairActivity" />
 
-        <activity android:name=".Presentation.Activity.LessonCompletedActivity" />
+        <activity android:name=".Presentation.Activity.LessonCompletedActivity.LessonCompletedActivity" />
+
+        <activity android:name=".Presentation.Activity.WelcomeActivity.WelcomeActivity" />
     </application>
 
 </manifest>

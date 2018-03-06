@@ -6,7 +6,8 @@ import android.content.Intent;
 import java.util.ArrayList;
 import java.util.Random;
 
-import e.rick.duolingoclone.Presentation.Tasks.TakePairTask.TapPairActivity;
+import e.rick.duolingoclone.Presentation.Activity.LessonCompletedActivity.LessonCompletedActivity;
+import e.rick.duolingoclone.Presentation.Tasks.TapPairTask.TapPairActivity;
 import e.rick.duolingoclone.Presentation.Tasks.TranslateSentenceTask.TSTaskActivity;
 import e.rick.duolingoclone.Presentation.Tasks.WordTask.WordTaskActivity;
 
@@ -53,6 +54,12 @@ public class ActivityNavigation {
         int randomIndex = random.nextInt(activities.size());
 
         Intent intent = new Intent(context, activities.get(randomIndex));
+        context.startActivity(intent);
+    }
+
+    public void lessonCompleted() {
+
+        Intent intent = new Intent(context, LessonCompletedActivity.class);
         context.startActivity(intent);
     }
 }

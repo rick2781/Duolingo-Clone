@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_background"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/layout_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Duolingo Clone"
+        android:textSize="40sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:textColor="@color/white_text"/>
+
+    <TextView
+        android:id="@+id/layout_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Free language education for the world"
+        android:textSize="24sp"
+        android:layout_below="@+id/layout_title"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/white_text"/>
+    
+    <Button
+        android:id="@+id/get_started_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_text"
+        android:textColor="@color/blue_pair"
+        android:text="GET STARTED"
+        android:textSize="20sp"
+        android:layout_above="@+id/log_in_link"
+        android:layout_marginBottom="50dp"/>
+
+    <TextView
+        android:id="@+id/log_in_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I ALREADY HAVE AN ACCOUNT"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="40dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/white_text"/>
+
+</RelativeLayout>

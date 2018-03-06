@@ -1,7 +1,6 @@
 package e.rick.duolingoclone.Presentation.Tasks.WordTask;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -28,11 +27,12 @@ import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import e.rick.duolingoclone.Data.Repository;
 import e.rick.duolingoclone.Model.QuestionModel;
-import e.rick.duolingoclone.Presentation.Activity.LessonCompletedActivity;
 import e.rick.duolingoclone.R;
 import e.rick.duolingoclone.Presentation.Tasks.CustomWord;
-import e.rick.duolingoclone.Data.QuestionAnswer;
+import e.rick.duolingoclone.Utils.ActivityNavigation;
+import e.rick.duolingoclone.Utils.Injection;
 
 public class WordTaskActivity extends AppCompatActivity {
 
@@ -60,13 +60,17 @@ public class WordTaskActivity extends AppCompatActivity {
     QuestionModel questionModel;
 
     ArrayList<String> words = new ArrayList<>();
-    ArrayList<String> answers = QuestionAnswer.getInstance().getAnswer();
+    ArrayList<String> answers = new ArrayList<>();
 
     Random random = new Random();
 
     int progressBarValue;
 
     Context context = WordTaskActivity.this;
+
+    ActivityNavigation activityNavigation;
+
+    Repository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,8 +81,6 @@ public class WordTaskActivity extends AppCompatActivity {
 
         initCustomLayout();
         initData();
-
-        checkAnswer();
     }
 
     private class TouchListener implements View.OnTouchListener {
@@ -104,7 +106,10 @@ public class WordTaskActivity extends AppCompatActivity {
 
         checkButton.setEnabled(false);
 
-        questionModel = QuestionAnswer.getInstance().getRandomQuestionObj();
+        repository = Injection.provideRepository();
+
+        answers = repository.getAnswer();
+        questionModel = repository.getRandomQuestionObj();
 
         Hawk.init(this).build();
 
@@ -120,6 +125,10 @@ public class WordTaskActivity extends AppCompatActivity {
         tvQuestion.setText(questionModel.getQuestion());
 
         randomizeCustomWords();
+
+        activityNavigation = ActivityNavigation.getInstance(this);
+
+        checkAnswer();
     }
 
     private void initCustomLayout() {
@@ -193,13 +202,13 @@ public class WordTaskActivity extends AppCompatActivity {
 
                     if (progressBarValue < 100) {
 
-//                        ActivityNavigation.getInstance(context).takeToRandomTask();
+                        activityNavigation.takeToRandomTask();
 
-                        Intent intent = new Intent(context, LessonCompletedActivity.class);
-                        startActivity(intent);
                     } else {
 
                         progressBarValue = 0;
+
+                        activityNavigation.lessonCompleted();
 
                         Hawk.put("progressBarValue", progressBarValue);
                     }

@@ -30,4 +30,9 @@
 
     <!-- Text -->
     <color name="week_letter">#757575</color>
+
+    <!-- Background -->
+
+    <color name="blue_background">#00abe4</color>
+
 </resources>

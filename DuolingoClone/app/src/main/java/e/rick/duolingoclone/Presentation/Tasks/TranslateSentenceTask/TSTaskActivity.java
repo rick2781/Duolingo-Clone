@@ -22,10 +22,12 @@ import com.orhanobut.hawk.Hawk;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import e.rick.duolingoclone.Data.Repository;
 import e.rick.duolingoclone.R;
 import e.rick.duolingoclone.Model.QuestionModel;
 import e.rick.duolingoclone.Utils.ActivityNavigation;
-import e.rick.duolingoclone.Data.QuestionAnswer;
+import e.rick.duolingoclone.Data.Local.QuestionDataSource;
+import e.rick.duolingoclone.Utils.Injection;
 
 /**
  * Created by Rick on 3/2/2018.
@@ -49,6 +51,8 @@ public class TSTaskActivity extends AppCompatActivity{
 
     int progressBarValue;
 
+    Repository repository;
+
     Context context = TSTaskActivity.this;
 
     @Override
@@ -65,7 +69,9 @@ public class TSTaskActivity extends AppCompatActivity{
 
         checkButton.setEnabled(false);
 
-        questionModel = QuestionAnswer.getInstance().getRandomQuestionObj();
+        repository = Injection.provideRepository();
+
+        questionModel = repository.getRandomQuestionObj();
 
         progressBarValue = 0;
 

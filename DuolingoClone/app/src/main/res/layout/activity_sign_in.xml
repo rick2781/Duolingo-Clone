@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_background"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/layout_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:text="Sign In"
+        android:textSize="28sp"
+        android:textColor="@color/white_text"/>
+
+    <EditText
+        android:id="@+id/username_email"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/layout_title"
+        android:layout_marginTop="40dp"
+        android:hint="Username or email"
+        android:textSize="24sp"
+        android:layout_marginBottom="-3dp"
+        android:textColorHint="@color/grey_button"
+        android:background="@drawable/sign_in_edit_text"/>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/username_email"
+        android:hint="Password"
+        android:textSize="24sp"
+        android:textColorHint="@color/grey_button"
+        android:padding="10dp"
+        android:background="@color/white_text"/>
+
+    <Button
+        android:id="@+id/sign_in_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/sign_in_button_bg"
+        android:text="SIGN IN"
+        android:textColor="@color/white_text"
+        android:textSize="19dp" />
+
+    <TextView
+        android:id="@+id/forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sign_in_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="FORGOT PASSWORD"
+        android:textColor="@color/white_text"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/one-tap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/google_signin"
+        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="8dp"
+        android:text="One-tap Sign In"
+        android:textColor="@color/white_text"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/google_signin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="1" />
+
+</RelativeLayout>
