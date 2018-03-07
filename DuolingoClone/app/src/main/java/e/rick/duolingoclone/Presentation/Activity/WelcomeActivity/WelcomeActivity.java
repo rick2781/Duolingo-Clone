@@ -1,5 +1,6 @@
 package e.rick.duolingoclone.Presentation.Activity.WelcomeActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import e.rick.duolingoclone.Presentation.Activity.SignInActivity.SignInActivity;
 import e.rick.duolingoclone.R;
 
 /**
@@ -47,8 +49,14 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
+                goToSignInScreen();
             }
         });
+    }
+
+    private void goToSignInScreen() {
+
+        Intent intent = new Intent(this, SignInActivity.class);
+        startActivity(intent);
     }
 }

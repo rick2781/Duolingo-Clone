@@ -16,12 +16,13 @@
         android:textColor="@color/white_text"/>
 
     <EditText
-        android:id="@+id/username_email"
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_below="@id/layout_title"
         android:layout_marginTop="40dp"
-        android:hint="Username or email"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
         android:textSize="24sp"
         android:layout_marginBottom="-3dp"
         android:textColorHint="@color/grey_button"
@@ -31,8 +32,9 @@
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@id/username_email"
+        android:layout_below="@id/email"
         android:hint="Password"
+        android:inputType="textPassword"
         android:textSize="24sp"
         android:textColorHint="@color/grey_button"
         android:padding="10dp"
@@ -80,5 +82,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_weight="1" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerInParent="true"/>
 
 </RelativeLayout>

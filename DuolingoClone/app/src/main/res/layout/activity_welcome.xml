@@ -32,7 +32,7 @@
         android:id="@+id/get_started_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white_text"
+        android:background="@drawable/get_started_button"
         android:textColor="@color/blue_pair"
         android:text="GET STARTED"
         android:textSize="20sp"

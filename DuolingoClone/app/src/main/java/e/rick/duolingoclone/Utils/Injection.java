@@ -13,4 +13,9 @@ public class Injection {
 
         return Repository.getInstance(QuestionDataSource.getInstance());
     }
+
+    public static FirebaseAuthHelper providesAuthHelper() {
+
+        return FirebaseAuthHelper.getClassInstance();
+    }
 }

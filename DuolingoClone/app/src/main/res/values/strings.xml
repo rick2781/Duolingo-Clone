@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Duolingo Clone</string>
+
+    <!-- Login/Register Screen Toast Strings -->
+    <string name="blankEditText">You must fill out all fields</string>
+    <string name="auth_failed">Wrong password or email!</string>
+    <string name="invalid_password">Your password needs to have at least 6 characters</string>
+    <string name="invalid_email">Email not valid!</string>
+    <string name="account_creation_fail"> Failed to create an account with this email. Try again later!</string>
+    <string name="account_creation_success"> Your account has been successfully created!\n Please check your email in order to confirm your account.</string>
+    <string name="email_not_verified"> You account is not verified.\n Check your email to verify it!</string>
 </resources>

@@ -25,6 +25,8 @@
         <activity android:name=".Presentation.Activity.LessonCompletedActivity.LessonCompletedActivity" />
 
         <activity android:name=".Presentation.Activity.WelcomeActivity.WelcomeActivity" />
+
+        <activity android:name=".Presentation.Activity.SignInActivity.SignInActivity" />
     </application>
 
 </manifest>

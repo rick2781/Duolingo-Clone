@@ -47,9 +47,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/green_button"
+        android:background="@drawable/button_task_continue"
         android:text="continue"
         android:textColor="@color/white_text"
-        android:textSize="18sp"/>
+        android:textSize="17sp"/>
 
 </RelativeLayout>

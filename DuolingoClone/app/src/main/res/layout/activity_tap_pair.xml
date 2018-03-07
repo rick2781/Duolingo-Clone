@@ -57,7 +57,9 @@
             android:id="@+id/check_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white_text"
+            android:background="@drawable/button_task_check"
+            android:textColor="@color/button_task_check"
+            android:textSize="17sp"
             android:text="check"/>
 
     </LinearLayout>
