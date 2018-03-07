@@ -110,8 +110,6 @@ public class TSTaskActivity extends AppCompatActivity{
 
                         Hawk.put("progressBarValue", progressBarValue);
 
-                        checkButton.setText("continue");
-
                         lockEditText();
 
                     } else {
@@ -131,10 +129,12 @@ public class TSTaskActivity extends AppCompatActivity{
 
                         Hawk.put("progressBarValue", progressBarValue);
 
-                        checkButton.setText("continue");
-
                         lockEditText();
                     }
+
+                    checkButton.setText("continue");
+                    checkButton.setTextColor(getResources().getColor(R.color.button_task_continue));
+                    checkButton.setBackground(getDrawable(R.drawable.button_task_continue));
 
                 } else if (checkButton.getText().equals("continue")) {
 
@@ -170,19 +170,17 @@ public class TSTaskActivity extends AppCompatActivity{
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                if (i1 > 0) {
+                if (i2 > 0) {
 
-                    checkButton.getBackground().setColorFilter(
-                            ContextCompat.getColor(context, R.color.green_button),
-                            PorterDuff.Mode.MULTIPLY);
+                    checkButton.setBackground(getDrawable(R.drawable.button_task_continue));
+                    checkButton.setTextColor(getResources().getColor(R.color.button_task_continue));
 
                     checkButton.setEnabled(true);
 
                 } else {
 
-                    checkButton.getBackground().setColorFilter(
-                            ContextCompat.getColor(context, R.color.grey_button),
-                            PorterDuff.Mode.MULTIPLY);
+                    checkButton.setBackground(getDrawable(R.drawable.button_task_check));
+                    checkButton.setTextColor(getResources().getColor(R.color.button_task_check));
 
                     checkButton.setEnabled(false);
                 }

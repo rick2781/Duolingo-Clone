@@ -37,11 +37,23 @@
 
     </FrameLayout>
 
+    <RelativeLayout
+        android:id="@+id/answer_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/check_button"
+        android:layout_marginBottom="50dp">
+
+
+
+    </RelativeLayout>
+
     <Button
         android:id="@+id/check_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white_text"
+        android:textColor="@color/button_task_check"
+        android:background="@drawable/button_task_check"
         android:text="check"
         android:layout_alignParentBottom="true"/>
 

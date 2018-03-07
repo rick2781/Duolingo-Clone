@@ -1,6 +1,7 @@
 package e.rick.duolingoclone.Presentation.Tasks.WordTask;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -29,6 +30,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import e.rick.duolingoclone.Data.Repository;
 import e.rick.duolingoclone.Model.QuestionModel;
+import e.rick.duolingoclone.Presentation.Activity.WelcomeActivity.WelcomeActivity;
+import e.rick.duolingoclone.Presentation.Tasks.TapPairTask.TapPairActivity;
 import e.rick.duolingoclone.R;
 import e.rick.duolingoclone.Presentation.Tasks.CustomWord;
 import e.rick.duolingoclone.Utils.ActivityNavigation;
@@ -43,6 +46,9 @@ public class WordTaskActivity extends AppCompatActivity {
 
     @BindView(R.id.main_layout)
     RelativeLayout mainLayout;
+
+    @BindView(R.id.answer_container)
+    RelativeLayout answerContainer;
 
     @BindView(R.id.check_button)
     Button checkButton;
@@ -104,6 +110,9 @@ public class WordTaskActivity extends AppCompatActivity {
 
     private void initData() {
 
+        Intent intent = new Intent(this, TapPairActivity.class);
+        startActivity(intent);
+
         checkButton.setEnabled(false);
 
         repository = Injection.provideRepository();
@@ -139,10 +148,9 @@ public class WordTaskActivity extends AppCompatActivity {
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        params.addRule(RelativeLayout.BELOW, R.id.frame_layout);
-        params.topMargin = 235;
+        params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 
-        mainLayout.addView(customLayout, params);
+        answerContainer.addView(customLayout, params);
     }
 
     private void checkAnswer() {
@@ -172,8 +180,6 @@ public class WordTaskActivity extends AppCompatActivity {
 
                         Hawk.put("progressBarValue", progressBarValue);
 
-                        checkButton.setText("continue");
-
                         lockViews();
 
                     } else {
@@ -193,10 +199,12 @@ public class WordTaskActivity extends AppCompatActivity {
 
                         Hawk.put("progressBarValue", progressBarValue);
 
-                        checkButton.setText("continue");
-
                         lockViews();
                     }
+
+                    checkButton.setText("continue");
+                    checkButton.setBackground(getDrawable(R.drawable.button_task_continue));
+                    checkButton.setTextColor(getResources().getColor(R.color.button_task_continue));
 
                 } else if (checkButton.getText().equals("continue")) {
 
@@ -221,17 +229,15 @@ public class WordTaskActivity extends AppCompatActivity {
 
         if (sentenceLine.getChildCount() > 0) {
 
-            checkButton.getBackground().setColorFilter(
-                    ContextCompat.getColor(this, R.color.green_button),
-                    PorterDuff.Mode.MULTIPLY);
+            checkButton.setBackground(getDrawable(R.drawable.button_task_continue));
+            checkButton.setTextColor(getResources().getColor(R.color.button_task_continue));
 
             checkButton.setEnabled(true);
 
         } else {
 
-            checkButton.getBackground().setColorFilter(
-                    ContextCompat.getColor(this, R.color.grey_button),
-                    PorterDuff.Mode.MULTIPLY);
+            checkButton.setBackground(getDrawable(R.drawable.button_task_check));
+            checkButton.setTextColor(getResources().getColor(R.color.button_task_check));
 
             checkButton.setEnabled(false);
         }

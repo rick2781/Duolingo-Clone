@@ -155,7 +155,7 @@ public class TapPairActivity extends AppCompatActivity{
 
                     compareWords.add(customWord);
 
-                    view.setBackgroundColor(getResources().getColor(R.color.blue_pair));
+                    view.setBackground(getDrawable(R.drawable.custom_word_selected));
 
                     setSearchingPair(true);
 
@@ -163,35 +163,38 @@ public class TapPairActivity extends AppCompatActivity{
 
                     CustomWord previousWord = compareWords.get(0);
 
-                    if (previousWord.getTag() == view.getTag()) {
+                    if (previousWord != view) {
 
-                        Toast.makeText(TapPairActivity.this, "Correct Pair", Toast.LENGTH_SHORT).show();
+                        if (previousWord.getTag() == view.getTag()) {
 
-                        previousWord.setEnabled(false);
-                        view.setEnabled(false);
+                            Toast.makeText(TapPairActivity.this, "Correct Pair", Toast.LENGTH_SHORT).show();
 
-                        previousWord.setBackgroundColor(getResources().getColor(R.color.white_text));
-                        previousWord.setTextColor(getResources().getColor(R.color.grey_button));
+                            previousWord.setEnabled(false);
+                            view.setEnabled(false);
 
-                        view.setBackgroundColor(getResources().getColor(R.color.white_text));
-                        customWord.setTextColor(getResources().getColor(R.color.grey_button));
+                            previousWord.setBackground(getDrawable(R.drawable.custom_word_border));
+                            previousWord.setTextColor(getResources().getColor(R.color.grey_button));
 
-                        setSearchingPair(false);
+                            view.setBackground(getDrawable(R.drawable.custom_word_border));
+                            customWord.setTextColor(getResources().getColor(R.color.grey_button));
 
-                        compareWords.clear();
+                            setSearchingPair(false);
 
-                        checkCompleteness();
+                            compareWords.clear();
 
-                    } else {
+                            checkCompleteness();
 
-                        Toast.makeText(TapPairActivity.this, "Wrong Pair", Toast.LENGTH_SHORT).show();
+                        } else {
 
-                        previousWord.setBackground(getDrawable(R.drawable.custom_word_border));
-                        view.setBackground(getDrawable(R.drawable.custom_word_border));
+                            Toast.makeText(TapPairActivity.this, "Wrong Pair", Toast.LENGTH_SHORT).show();
 
-                        setSearchingPair(false);
+                            previousWord.setBackground(getDrawable(R.drawable.custom_word_border));
+                            view.setBackground(getDrawable(R.drawable.custom_word_border));
 
-                        compareWords.clear();
+                            setSearchingPair(false);
+
+                            compareWords.clear();
+                        }
                     }
                 }
 
@@ -238,9 +241,8 @@ public class TapPairActivity extends AppCompatActivity{
 
             checkButton.setEnabled(true);
             checkButton.setText("continue");
-            checkButton.getBackground().setColorFilter(
-                    ContextCompat.getColor(this, R.color.green_button),
-                    PorterDuff.Mode.MULTIPLY);
+            checkButton.setTextColor(getResources().getColor(R.color.button_task_continue));
+            checkButton.setBackground(getDrawable(R.drawable.button_task_continue));
         }
     }
 
