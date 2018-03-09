@@ -36,5 +36,6 @@
     <!-- Background -->
 
     <color name="blue_background">#00abe4</color>
+    <color name="default_light_grey_bg">#f5f5f5</color>
 
 </resources>

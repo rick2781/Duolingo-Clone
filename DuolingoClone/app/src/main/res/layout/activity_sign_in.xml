@@ -6,20 +6,35 @@
     android:background="@color/blue_background"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/layout_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:text="Sign In"
-        android:textSize="28sp"
-        android:textColor="@color/white_text"/>
+    <LinearLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back_button"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/layout_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:textSize="28sp"
+            android:layout_marginLeft="16dp"
+            android:gravity="center"
+            android:textColor="@color/white_text"/>
+
+    </LinearLayout>
 
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@id/layout_title"
+        android:layout_below="@id/toolbar"
         android:layout_marginTop="40dp"
         android:hint="Email"
         android:inputType="textEmailAddress"

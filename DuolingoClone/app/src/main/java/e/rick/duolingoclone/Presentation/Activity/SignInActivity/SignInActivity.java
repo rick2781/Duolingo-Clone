@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -61,6 +62,9 @@ public class SignInActivity extends AppCompatActivity {
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
 
+    @BindView(R.id.back_button)
+    ImageView backButton;
+
     Context context = SignInActivity.this;
 
     FirebaseAuth mAuth;
@@ -85,6 +89,14 @@ public class SignInActivity extends AppCompatActivity {
         authUser();
         instantiateGoogle();
         googleSignInListener();
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                onBackPressed();
+            }
+        });
     }
 
     private void authUser() {

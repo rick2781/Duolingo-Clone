@@ -195,6 +195,15 @@ public class TapPairActivity extends AppCompatActivity{
 
                             compareWords.clear();
                         }
+
+                    } else {
+
+                        previousWord.setBackground(getDrawable(R.drawable.custom_word_border));
+                        view.setBackground(getDrawable(R.drawable.custom_word_border));
+
+                        setSearchingPair(false);
+
+                        compareWords.clear();
                     }
                 }
 

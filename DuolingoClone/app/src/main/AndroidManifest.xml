@@ -27,6 +27,8 @@
         <activity android:name=".Presentation.Activity.WelcomeActivity.WelcomeActivity" />
 
         <activity android:name=".Presentation.Activity.SignInActivity.SignInActivity" />
+
+        <activity android:name=".Presentation.Activity.SelectLanguageActivity.SelectLanguageActivity" />
     </application>
 
 </manifest>
