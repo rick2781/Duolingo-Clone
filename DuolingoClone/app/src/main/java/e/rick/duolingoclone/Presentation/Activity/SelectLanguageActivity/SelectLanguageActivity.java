@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import butterknife.BindView;
@@ -21,6 +23,9 @@ public class SelectLanguageActivity extends AppCompatActivity {
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
+    @BindView(R.id.back_button)
+    ImageView backButton;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +38,7 @@ public class SelectLanguageActivity extends AppCompatActivity {
 
     private void initData() {
 
-        LanguageAdapter languageAdapter = new LanguageAdapter();
+        LanguageAdapter languageAdapter = new LanguageAdapter(this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         RvDividerItemDecoration itemDecoration = new RvDividerItemDecoration(getDrawable(R.drawable.recycler_view_divider));
 
@@ -41,10 +46,12 @@ public class SelectLanguageActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.addItemDecoration(itemDecoration);
 
-    }
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-    public void toastonActivity(int position) {
-
-        Toast.makeText(this, "it worked" + position, Toast.LENGTH_SHORT).show();
+                onBackPressed();
+            }
+        });
     }
 }

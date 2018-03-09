@@ -55,6 +55,7 @@
         android:textColor="@color/button_task_check"
         android:background="@drawable/button_task_check"
         android:text="check"
+        android:textSize="17sp"
         android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

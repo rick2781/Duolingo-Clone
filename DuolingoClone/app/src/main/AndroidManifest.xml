@@ -29,6 +29,9 @@
         <activity android:name=".Presentation.Activity.SignInActivity.SignInActivity" />
 
         <activity android:name=".Presentation.Activity.SelectLanguageActivity.SelectLanguageActivity" />
+
+        <activity android:name=".Presentation.Activity.PickDailyGoalActivity.PickDailyGoalActivity" />
+
     </application>
 
 </manifest>

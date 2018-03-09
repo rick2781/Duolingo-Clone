@@ -1,5 +1,7 @@
 package e.rick.duolingoclone.Presentation.Activity.SelectLanguageActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import e.rick.duolingoclone.Data.Repository;
+import e.rick.duolingoclone.Presentation.Activity.PickDailyGoalActivity.PickDailyGoalActivity;
 import e.rick.duolingoclone.R;
 import e.rick.duolingoclone.Utils.Injection;
 
@@ -31,10 +34,12 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
             "Dutch", "Irish", "Danish"};
 
     Repository repository;
+    Context context;
 
-    public LanguageAdapter() {
+    public LanguageAdapter(Context context) {
 
         repository = Injection.provideRepository();
+        this.context = context;
     }
 
     @Override
@@ -55,7 +60,10 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
             @Override
             public void onClick(View v) {
 
-                repository.setNewLanguage(language);
+                repository.setNewLanguage(language.toLowerCase());
+
+                Intent intent = new Intent(context, PickDailyGoalActivity.class);
+                context.startActivity(intent);
             }
         });
     }
