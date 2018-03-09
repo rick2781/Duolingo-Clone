@@ -24,10 +24,13 @@ import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import e.rick.duolingoclone.Data.Local.QuestionDataSource;
+import e.rick.duolingoclone.Data.Repository;
 import e.rick.duolingoclone.Model.PairModel;
 import e.rick.duolingoclone.Presentation.Tasks.CustomWord;
 import e.rick.duolingoclone.R;
 import e.rick.duolingoclone.Utils.ActivityNavigation;
+import e.rick.duolingoclone.Utils.Injection;
 
 /**
  * Created by Rick on 3/3/2018.
@@ -61,6 +64,8 @@ public class TapPairActivity extends AppCompatActivity{
 
     Random random = new Random();
 
+    Repository repository;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +80,9 @@ public class TapPairActivity extends AppCompatActivity{
 
         checkButton.setEnabled(false);
 
-        pairs = QuestionAnswer.getInstance().getPairs();
+        repository = Injection.provideRepository();
+
+        pairs = repository.getPairs();
 
         Hawk.init(this).build();
 

@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import e.rick.duolingoclone.Data.DataSource;
 import e.rick.duolingoclone.Model.UserData;
 import e.rick.duolingoclone.Utils.Injection;
 
@@ -18,7 +19,7 @@ import e.rick.duolingoclone.Utils.Injection;
  * Created by Rick on 3/8/2018.
  */
 
-public class FirebaseDatabaseHelper {
+public class FirebaseDatabaseHelper implements DataSource.Remote {
 
     private static final String TAG = "FirebaseDatabaseHelper";
 
@@ -49,6 +50,7 @@ public class FirebaseDatabaseHelper {
         return mDatabase;
     }
 
+    @Override
     public void setNewLanguage(String language) {
 
         String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
@@ -70,6 +72,7 @@ public class FirebaseDatabaseHelper {
 
 
     //TODO AUTOMATE LANGUAGE RECOGNITION
+    @Override
     public void setDailyXp(String language, int xp) {
 
         String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
@@ -95,6 +98,7 @@ public class FirebaseDatabaseHelper {
                 });
     }
 
+    @Override
     public void setUserTotalXp(String language, int xp) {
 
         String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
@@ -112,6 +116,7 @@ public class FirebaseDatabaseHelper {
                 });
     }
 
+    @Override
     public void setLastTimeVisited() {
 
         String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
@@ -134,6 +139,7 @@ public class FirebaseDatabaseHelper {
                 });
     }
 
+    @Override
     public void setDailyGoal(int dailyGoal) {
 
         String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
@@ -151,6 +157,7 @@ public class FirebaseDatabaseHelper {
                 });
     }
 
+    @Override
     public void setUserInfo(UserData userData) {
 
         String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
@@ -168,6 +175,7 @@ public class FirebaseDatabaseHelper {
                 });
     }
 
+    @Override
     public void setLessonProgress(String language, String subject, String lesson, boolean completeness) {
 
         String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
@@ -189,6 +197,7 @@ public class FirebaseDatabaseHelper {
                 });
     }
 
+    @Override
     public void setLessonCompleteDate(String language, String subject, String lesson) {
 
         String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();

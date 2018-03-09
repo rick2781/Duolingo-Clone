@@ -1,6 +1,7 @@
 package e.rick.duolingoclone.Utils;
 
 import e.rick.duolingoclone.Data.Local.QuestionDataSource;
+import e.rick.duolingoclone.Data.Remote.FirebaseDatabaseHelper;
 import e.rick.duolingoclone.Data.Repository;
 
 /**
@@ -11,7 +12,9 @@ public class Injection {
 
     public static Repository provideRepository() {
 
-        return Repository.getInstance(QuestionDataSource.getInstance());
+        return Repository.getInstance(
+                QuestionDataSource.getInstance(),
+                FirebaseDatabaseHelper.getHelperInstance());
     }
 
     public static FirebaseAuthHelper providesAuthHelper() {

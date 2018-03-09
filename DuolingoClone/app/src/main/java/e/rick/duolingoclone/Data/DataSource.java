@@ -1,9 +1,12 @@
 package e.rick.duolingoclone.Data;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 import e.rick.duolingoclone.Model.PairModel;
 import e.rick.duolingoclone.Model.QuestionModel;
+import e.rick.duolingoclone.Model.UserData;
 
 /**
  * Created by Rick on 3/6/2018.
@@ -11,9 +14,33 @@ import e.rick.duolingoclone.Model.QuestionModel;
 
 public interface DataSource {
 
-    ArrayList<PairModel> getPairs();
+    interface Local{
 
-    QuestionModel getRandomQuestionObj();
+        ArrayList<PairModel> getPairs();
 
-    ArrayList<String> getAnswer();
+        QuestionModel getRandomQuestionObj();
+
+        ArrayList<String> getAnswer();
+    }
+
+    interface Remote {
+
+        FirebaseDatabase getDatabaseInstance();
+
+        void setNewLanguage(String language);
+
+        void setDailyXp(String language, int xp);
+
+        void setUserTotalXp(String language, int xp);
+
+        void setLastTimeVisited();
+
+        void setDailyGoal(int dailyGoal);
+
+        void setUserInfo(UserData userData);
+
+        void setLessonProgress(String language, String subject, String lesson, boolean completeness);
+
+        void setLessonCompleteDate(String language, String subject, String lesson);
+    }
 }

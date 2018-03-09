@@ -36,6 +36,7 @@ dependencies {
     //Firebase Dependencies
     compile'com.google.firebase:firebase-auth:11.8.0'
     compile 'com.google.firebase:firebase-database:11.8.0'
+    compile 'com.google.android.gms:play-services-auth:11.8.0'
 
     //Hawk
     compile 'com.orhanobut:hawk:2.0.1'

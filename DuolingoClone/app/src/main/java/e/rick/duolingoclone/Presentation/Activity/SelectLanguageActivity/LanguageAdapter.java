@@ -13,7 +13,9 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import e.rick.duolingoclone.Data.Repository;
 import e.rick.duolingoclone.R;
+import e.rick.duolingoclone.Utils.Injection;
 
 /**
  * Created by Rick on 3/8/2018.
@@ -28,6 +30,13 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
             "German", "Chinese", "Japanese", "Korean", "Italian",
             "Dutch", "Irish", "Danish"};
 
+    Repository repository;
+
+    public LanguageAdapter() {
+
+        repository = Injection.provideRepository();
+    }
+
     @Override
     public LanguageAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.select_course_item, parent, false);
@@ -38,7 +47,7 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
     @Override
     public void onBindViewHolder(LanguageAdapter.ViewHolder holder, final int position) {
 
-        String language = languages[position];
+        final String language = languages[position];
 
         holder.tvLanguage.setText(language);
 
@@ -46,7 +55,7 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
             @Override
             public void onClick(View v) {
 
-                Log.d(TAG, "onClick: executed " + position);
+                repository.setNewLanguage(language);
             }
         });
     }

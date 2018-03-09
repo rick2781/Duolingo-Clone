@@ -11,7 +11,7 @@ import e.rick.duolingoclone.Model.QuestionModel;
  * Created by Rick on 3/2/2018.
  */
 
-public class QuestionDataSource implements DataSource {
+public class QuestionDataSource implements DataSource.Local {
 
     private static QuestionDataSource INSTANCE;
 
