@@ -25,7 +25,6 @@ import java.util.Random;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import e.rick.duolingoclone.Model.PairModel;
-import e.rick.duolingoclone.Data.QuestionAnswer;
 import e.rick.duolingoclone.Presentation.Tasks.CustomWord;
 import e.rick.duolingoclone.R;
 import e.rick.duolingoclone.Utils.ActivityNavigation;

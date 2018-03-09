@@ -6,8 +6,12 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
+import e.rick.duolingoclone.Model.UserData;
 import e.rick.duolingoclone.Utils.Injection;
 
 /**
@@ -70,8 +74,10 @@ public class FirebaseDatabaseHelper {
 
         String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
 
-        //TODO FIX CALENDAR HERE
-        Calendar calendar = Calendar.getInstance();
+        Date date = Calendar.getInstance().getTime();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE", Locale.US);
+        final String dayOfWeek = dateFormat.format(date);
 
         myRef.child("user")
                 .child(userID)
@@ -79,7 +85,7 @@ public class FirebaseDatabaseHelper {
                 .child(language)
                 .child("week_xp")
                 .child(dayOfWeek)
-                .setvalue(xp)
+                .setValue(xp)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -110,13 +116,15 @@ public class FirebaseDatabaseHelper {
 
         String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
 
-        //TODO FIX CALENDAR
-        Calendar calendar = Calendar.getInstance();
+        Date date = Calendar.getInstance().getTime();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY", Locale.US);
+        String lastVisited = dateFormat.format(date);
 
         myRef.child("user")
                 .child(userID)
                 .child("last_visited")
-                .setValue(lastTimeVisited)
+                .setValue(lastVisited)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -185,8 +193,10 @@ public class FirebaseDatabaseHelper {
 
         String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
 
-        //TODO FIX CALENDAR
-        Calendar calendar = Calendar.getInstance();
+        Date date = Calendar.getInstance().getTime();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY", Locale.US);
+        String completedDate = dateFormat.format(date);
 
         myRef.child("user")
                 .child(userID)
@@ -194,7 +204,8 @@ public class FirebaseDatabaseHelper {
                 .child(language)
                 .child("lessons")
                 .child(subject)
-                .child(completeness)
+                .child("completed_date")
+                .setValue(completedDate)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
