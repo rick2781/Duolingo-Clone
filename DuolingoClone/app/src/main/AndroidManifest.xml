@@ -9,13 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Presentation.Tasks.WordTask.WordTaskActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Presentation.Tasks.WordTask.WordTaskActivity" />
 
         <activity android:name=".Presentation.Tasks.TranslateSentenceTask.TSTaskActivity"
             android:windowSoftInputMode="adjustPan"/>
@@ -31,6 +25,16 @@
         <activity android:name=".Presentation.Activity.SelectLanguageActivity.SelectLanguageActivity" />
 
         <activity android:name=".Presentation.Activity.PickDailyGoalActivity.PickDailyGoalActivity" />
+
+        <activity android:name=".Presentation.Activity.LessonListActivity.LessonListActivity">
+
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+        </activity>
 
     </application>
 

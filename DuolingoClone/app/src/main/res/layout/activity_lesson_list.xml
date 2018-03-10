@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/default_light_grey_bg">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:padding="16dp"
+        android:background="@drawable/gray_bottom_border">
+
+        <TextView
+            android:id="@+id/current_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spanish"
+            android:textSize="17sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:textColor="#000"/>
+
+        <TextView
+            android:id="@+id/overall_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Overall Progress: 23%"
+            android:textSize="17sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="#000"/>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="130dp">
+
+                <e.rick.duolingoclone.Utils.CustomProgressBar
+                    android:id="@+id/basics1_bar"
+                    style="@style/lesson_bar"
+                    android:layout_centerInParent="true"/>
+
+                <TextView
+                    style="@style/lesson_bar_text"
+                    android:layout_below="@id/basics1_bar"
+                    android:layout_centerHorizontal="true"
+                    android:text="Basics 1" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp">
+
+                    <e.rick.duolingoclone.Utils.CustomProgressBar
+                        android:id="@+id/basic2_bar"
+                        style="@style/lesson_bar"
+                        android:layout_alignParentEnd="true"/>
+
+                    <TextView
+                        style="@style/lesson_bar_text"
+                        android:layout_below="@id/basic2_bar"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="5dp"
+                        android:text="Basics 2" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp">
+
+                    <e.rick.duolingoclone.Utils.CustomProgressBar
+                        android:id="@+id/basic3_bar"
+                        style="@style/lesson_bar"
+                        android:layout_alignParentStart="true"/>
+
+                    <TextView
+                        style="@style/lesson_bar_text"
+                        android:layout_below="@id/basic3_bar"
+                        android:layout_alignParentStart="true"
+                        android:paddingStart="5dp"
+                        android:text="Basics 3" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp">
+
+                    <e.rick.duolingoclone.Utils.CustomProgressBar
+                        android:id="@+id/food_bar"
+                        style="@style/lesson_bar"
+                        android:layout_alignParentEnd="true"/>
+
+                    <TextView
+                        style="@style/lesson_bar_text"
+                        android:layout_alignStart="@+id/food_bar"
+                        android:layout_below="@+id/food_bar"
+                        android:layout_marginStart="16dp"
+                        android:text="Food" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="110dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp">
+
+                    <e.rick.duolingoclone.Utils.CustomProgressBar
+                        android:id="@+id/animal_bar"
+                        style="@style/lesson_bar"
+                        android:layout_alignParentStart="true"/>
+
+                    <TextView
+                        style="@style/lesson_bar_text"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/animal_bar"
+                        android:layout_marginStart="12dp"
+                        android:text="Animal" />
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginTop="8dp">
+
+                <e.rick.duolingoclone.Utils.CustomProgressBar
+                    android:id="@+id/clothing_bar"
+                    style="@style/lesson_bar"
+                    android:layout_centerInParent="true"/>
+
+                <TextView
+                    style="@style/lesson_bar_text"
+                    android:layout_below="@id/clothing_bar"
+                    android:layout_centerHorizontal="true"
+                    android:text="Clothing" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/shortcut_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TAKE A SHORTCUT"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center"
+                android:textSize="17sp"
+                android:layout_marginBottom="150dp"
+                android:background="@drawable/button_task_continue"
+                android:textColor="@color/white_text"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

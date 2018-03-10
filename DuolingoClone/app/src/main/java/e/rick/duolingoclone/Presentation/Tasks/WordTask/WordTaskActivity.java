@@ -30,6 +30,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import e.rick.duolingoclone.Data.Repository;
 import e.rick.duolingoclone.Model.QuestionModel;
+import e.rick.duolingoclone.Presentation.Activity.LessonListActivity.LessonListActivity;
 import e.rick.duolingoclone.Presentation.Activity.SelectLanguageActivity.SelectLanguageActivity;
 import e.rick.duolingoclone.Presentation.Activity.WelcomeActivity.WelcomeActivity;
 import e.rick.duolingoclone.Presentation.Tasks.TapPairTask.TapPairActivity;
@@ -110,9 +111,6 @@ public class WordTaskActivity extends AppCompatActivity {
     }
 
     private void initData() {
-
-        Intent intent = new Intent(this, SelectLanguageActivity.class);
-        startActivity(intent);
 
         checkButton.setEnabled(false);
 

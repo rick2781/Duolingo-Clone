@@ -26,4 +26,19 @@
         <item name="rounded_corner">true</item>
     </style>
 
+    <style name="lesson_bar">
+        <item name="foreground_progress_thickness">20</item>
+        <item name="background_progress_thickness">20</item>
+        <item name="background_progress_color">#bdbdbd</item>
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">80dp</item>
+    </style>
+
+    <style name="lesson_bar_text">
+        <item name="android:textColor">#000</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 </resources>

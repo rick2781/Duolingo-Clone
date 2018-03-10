@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DuolingoClone.iml" filepath="$PROJECT_DIR$/DuolingoClone.iml" />
-      <module fileurl="file://C:\Users\Rick\Desktop\Duolingo-Clone\DuolingoClone\DuolingoClone.iml" filepath="C:\Users\Rick\Desktop\Duolingo-Clone\DuolingoClone\DuolingoClone.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Rick\Desktop\Duolingo-Clone\DuolingoClone\app\app.iml" filepath="C:\Users\Rick\Desktop\Duolingo-Clone\DuolingoClone\app\app.iml" />
     </modules>
   </component>
 </project>
