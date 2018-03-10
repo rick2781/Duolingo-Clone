@@ -45,17 +45,11 @@
                 android:id="@+id/casual_goal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:layout_toEndOf="@+id/casual_goal"
                 android:text="Casual"
                 android:textColor="#616161"
-                android:textSize="19sp" />
+                android:textSize="19sp"
+                android:paddingStart="16dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -81,17 +75,11 @@
                 android:id="@+id/regular_goal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:layout_toEndOf="@+id/regular_goal"
                 android:text="Regular"
                 android:textColor="#616161"
-                android:textSize="19sp" />
+                android:textSize="19sp"
+                android:paddingStart="16dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -117,17 +105,11 @@
                 android:id="@+id/serious_goal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:layout_toEndOf="@+id/serious_goal"
                 android:text="Serious"
                 android:textColor="#616161"
-                android:textSize="19sp" />
+                android:textSize="19sp"
+                android:paddingStart="16dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -153,17 +135,11 @@
                 android:id="@+id/insane_goal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:layout_toEndOf="@+id/insane_goal"
-                android:text="Serious"
+                android:text="Insane"
                 android:textColor="#616161"
-                android:textSize="19sp" />
+                android:textSize="19sp"
+                android:paddingStart="16dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
