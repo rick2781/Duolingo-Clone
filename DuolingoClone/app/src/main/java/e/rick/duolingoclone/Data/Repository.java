@@ -109,6 +109,11 @@ public class Repository implements DataSource.Local, DataSource.Remote {
 
     @Override
     public void getDailyXp() {
-        dataSourceRemote.getDailyGoal();
+        dataSourceRemote.getDailyXp();
+    }
+
+    @Override
+    public void getWeekXp() {
+        dataSourceRemote.getWeekXp();
     }
 }

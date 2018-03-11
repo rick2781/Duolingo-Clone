@@ -1,8 +1,10 @@
 package e.rick.duolingoclone.Presentation.Activity.LessonListActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,9 +12,13 @@ import android.widget.Toast;
 
 import com.orhanobut.hawk.Hawk;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import e.rick.duolingoclone.Data.Repository;
+import e.rick.duolingoclone.Presentation.Activity.LessonCompletedActivity.LessonCompletedActivity;
 import e.rick.duolingoclone.R;
 import e.rick.duolingoclone.Utils.ActivityNavigation;
 import e.rick.duolingoclone.Utils.CustomProgressBar;
@@ -23,6 +29,8 @@ import e.rick.duolingoclone.Utils.Injection;
  */
 
 public class LessonListActivity extends AppCompatActivity {
+
+    private static final String TAG = "LessonListActivity";
 
     @BindView(R.id.basic_bar)
     CustomProgressBar basic1Bar;
@@ -67,6 +75,8 @@ public class LessonListActivity extends AppCompatActivity {
         repository = Injection.provideRepository();
 
         repository.getDailyGoal();
+        repository.getDailyXp();
+        repository.getWeekXp();
 
         setupBarListener();
 

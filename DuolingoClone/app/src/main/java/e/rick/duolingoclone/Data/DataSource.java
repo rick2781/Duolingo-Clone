@@ -46,5 +46,7 @@ public interface DataSource {
         void getDailyGoal();
 
         void getDailyXp();
+
+        void getWeekXp();
     }
 }

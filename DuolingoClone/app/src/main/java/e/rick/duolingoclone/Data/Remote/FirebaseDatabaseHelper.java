@@ -1,5 +1,6 @@
 package e.rick.duolingoclone.Data.Remote;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -19,6 +20,7 @@ import java.util.Locale;
 
 import e.rick.duolingoclone.Data.DataSource;
 import e.rick.duolingoclone.Model.UserData;
+import e.rick.duolingoclone.Presentation.Activity.LessonListActivity.LessonListActivity;
 import e.rick.duolingoclone.Utils.Injection;
 
 /**
@@ -248,7 +250,9 @@ public class FirebaseDatabaseHelper implements DataSource.Remote {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        Hawk.put("dailyGoal", dataSnapshot.getValue());
+                        int dailyGoal = dataSnapshot.getValue(Integer.class);
+
+                        Hawk.put("dailyGoal", dailyGoal);
                     }
 
                     @Override
@@ -280,7 +284,69 @@ public class FirebaseDatabaseHelper implements DataSource.Remote {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        Hawk.put("dailyXp", dataSnapshot.getValue());
+                        int dailyXp = Math.toIntExact(dataSnapshot.getValue(Long.class));
+
+                        Hawk.put("dailyXp", dailyXp);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
+    @Override
+    public void getWeekXp() {
+
+        String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
+
+        String language = Hawk.get("currentLanguage");
+
+        myRef.child("user")
+                .child(userID)
+                .child("course")
+                .child(language)
+                .child("week_xp")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        for (DataSnapshot weekDays : dataSnapshot.getChildren()) {
+
+                            int dailyXp = Math.toIntExact(weekDays.getValue(Long.class));
+
+                            switch (weekDays.getKey()) {
+
+                                case "Monday":
+                                    Hawk.put("mondayXp", dailyXp);
+                                    break;
+
+                                case "Tuesday":
+                                    Hawk.put("tuesdayXp", dailyXp);
+                                    break;
+
+                                case "Wednesday":
+                                    Hawk.put("wednesdayXp", dailyXp);
+                                    break;
+
+                                case "Thursday":
+                                    Hawk.put("thursdayXp", dailyXp);
+                                    break;
+
+                                case "Friday":
+                                    Hawk.put("fridayXp", dailyXp);
+                                    break;
+
+                                case "Saturday":
+                                    Hawk.put("saturdayXp", dailyXp);
+                                    break;
+
+                                case "Sunday":
+                                    Hawk.put("sundayXp", dailyXp);
+                                    break;
+                            }
+                        }
                     }
 
                     @Override

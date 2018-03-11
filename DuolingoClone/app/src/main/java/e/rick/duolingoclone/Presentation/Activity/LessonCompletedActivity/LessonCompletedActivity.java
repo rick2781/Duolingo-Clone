@@ -12,6 +12,10 @@ import android.widget.RelativeLayout;
 import com.orhanobut.hawk.Hawk;
 
 import java.security.InvalidKeyException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,7 +40,38 @@ public class LessonCompletedActivity extends AppCompatActivity {
     @BindView(R.id.continue_button)
     Button continueButton;
 
+    @BindView(R.id.monday_bar)
+    CustomProgressBar mondayBar;
+
+    @BindView(R.id.tuesday_bar)
+    CustomProgressBar tuesdayBar;
+
+    @BindView(R.id.wednesday_bar)
+    CustomProgressBar wednesdayBar;
+
+    @BindView(R.id.thursday_bar)
+    CustomProgressBar thursdayBar;
+
+    @BindView(R.id.friday_bar)
+    CustomProgressBar fridayBar;
+
+    @BindView(R.id.saturday_bar)
+    CustomProgressBar saturdayBar;
+
+    @BindView(R.id.sunday_bar)
+    CustomProgressBar sundayBar;
+
     Repository repository;
+
+    int mondayProgress,
+            tuesdayProgress,
+            wednesdayProgress,
+            thursdayProgress,
+            fridayProgress,
+            saturdayProgress,
+            sundayProgress;
+
+    int dailyGoal;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,7 +89,7 @@ public class LessonCompletedActivity extends AppCompatActivity {
 
         repository = Injection.provideRepository();
 
-        repository.getDailyXp();
+        dailyGoal = Hawk.get("dailyGoal");
 
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,12 +101,12 @@ public class LessonCompletedActivity extends AppCompatActivity {
         });
 
         setupProgressBar();
+        setupWeekBar();
     }
 
     private void setupProgressBar() {
 
-        long dailyGoal = Hawk.get("dailyGoal");
-        long dailyXp;
+        int dailyXp;
 
         if (Hawk.get("dailyXp") != null) {
 
@@ -79,19 +114,74 @@ public class LessonCompletedActivity extends AppCompatActivity {
 
             dailyXp += 10;
 
-            repository.setDailyXp((int) dailyXp);
+            Hawk.put("dailyXp", dailyXp);
+            repository.setDailyXp(dailyXp);
 
         } else {
 
             dailyXp = 10;
 
-            repository.setDailyXp((int) dailyXp);
+            Hawk.put("dailyXp", dailyXp);
+            repository.setDailyXp(dailyXp);
         }
 
-        dailyProgressBar.setMax((int) dailyGoal);
+        dailyProgressBar.setMax(dailyGoal);
 
-        dailyProgressBar.setProgressWithAnimation((int) dailyXp);
+        dailyProgressBar.setProgressWithAnimation(dailyXp, 20000);
+    }
 
+    private void setupWeekBar() {
 
+        if (Hawk.get("mondayXp") != null) {
+            mondayProgress = (int) Hawk.get("mondayXp");
+        } else {
+            mondayProgress = 0;
+        }
+        if (Hawk.get("tuesdayXp") != null) {
+            tuesdayProgress = (int) Hawk.get("tuesdayXp");
+        } else {
+            tuesdayProgress = 0;
+        }
+        if (Hawk.get("wednesdayXp") != null) {
+            wednesdayProgress = (int) Hawk.get("wednesdayXp");
+        } else {
+            wednesdayProgress = 0;
+        }
+        if (Hawk.get("thursdayXp") != null) {
+            thursdayProgress = (int) Hawk.get("thursdayXp");
+        } else {
+            thursdayProgress = 0;
+        }
+        if (Hawk.get("fridayXp") != null) {
+            fridayProgress = (int) Hawk.get("fridayXp");
+        } else {
+            fridayProgress = 0;
+        }
+        if (Hawk.get("saturdayXp") != null) {
+            saturdayProgress = (int) Hawk.get("saturdayXp");
+        } else {
+            saturdayProgress = 0;
+        }
+        if (Hawk.get("sundayXp") != null) {
+            sundayProgress = (int) Hawk.get("sundayXp");
+        } else {
+            sundayProgress = 0;
+        }
+
+        mondayBar.setProgress(mondayProgress);
+        tuesdayBar.setProgress(tuesdayProgress);
+        wednesdayBar.setProgress(wednesdayProgress);
+        thursdayBar.setProgress(thursdayProgress);
+        fridayBar.setProgress(fridayProgress);
+        saturdayBar.setProgress(saturdayProgress);
+        sundayBar.setProgress(sundayProgress);
+
+        mondayBar.setMax(dailyGoal);
+        tuesdayBar.setMax(dailyGoal);
+        wednesdayBar.setMax(dailyGoal);
+        thursdayBar.setMax(dailyGoal);
+        fridayBar.setMax(dailyGoal);
+        saturdayBar.setMax(dailyGoal);
+        sundayBar.setMax(dailyGoal);
     }
 }
