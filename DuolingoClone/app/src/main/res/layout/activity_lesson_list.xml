@@ -49,15 +49,15 @@
                 android:layout_height="130dp">
 
                 <e.rick.duolingoclone.Utils.CustomProgressBar
-                    android:id="@+id/basics1_bar"
+                    android:id="@+id/basic_bar"
                     style="@style/lesson_bar"
                     android:layout_centerInParent="true"/>
 
                 <TextView
                     style="@style/lesson_bar_text"
-                    android:layout_below="@id/basics1_bar"
+                    android:layout_below="@id/basic_bar"
                     android:layout_centerHorizontal="true"
-                    android:text="Basics 1" />
+                    android:text="Basics" />
 
             </RelativeLayout>
 
@@ -75,16 +75,16 @@
                     android:layout_marginEnd="16dp">
 
                     <e.rick.duolingoclone.Utils.CustomProgressBar
-                        android:id="@+id/basic2_bar"
+                        android:id="@+id/phrases_bar"
                         style="@style/lesson_bar"
                         android:layout_alignParentEnd="true"/>
 
                     <TextView
                         style="@style/lesson_bar_text"
-                        android:layout_below="@id/basic2_bar"
+                        android:layout_below="@id/phrases_bar"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="5dp"
-                        android:text="Basics 2" />
+                        android:text="Phrases" />
 
                 </RelativeLayout>
 
@@ -96,16 +96,16 @@
                     android:layout_marginStart="16dp">
 
                     <e.rick.duolingoclone.Utils.CustomProgressBar
-                        android:id="@+id/basic3_bar"
+                        android:id="@+id/greeting_bar"
                         style="@style/lesson_bar"
                         android:layout_alignParentStart="true"/>
 
                     <TextView
                         style="@style/lesson_bar_text"
-                        android:layout_below="@id/basic3_bar"
+                        android:layout_below="@id/greeting_bar"
                         android:layout_alignParentStart="true"
                         android:paddingStart="5dp"
-                        android:text="Basics 3" />
+                        android:text="Greeting" />
 
                 </RelativeLayout>
 

@@ -173,7 +173,8 @@ public class WordTaskActivity extends AppCompatActivity {
 
                         Toast.makeText(WordTaskActivity.this, "You Are Correct!", Toast.LENGTH_SHORT).show();
 
-                        progressBarValue += 10;
+                        //fixhere
+                        progressBarValue += 100;
 
                         progressBar.setProgress(progressBarValue);
 
@@ -269,7 +270,7 @@ public class WordTaskActivity extends AppCompatActivity {
         int sentenceWordsCount = wordsFromSentence.length;
 
         //Declare how many words left to complete our layout
-        int leftSize = 8 - sentenceWordsCount;
+        int leftSize = 7 - sentenceWordsCount;
 
         //Pick a random number from "leftSize" and add 2
         int leftRandom = random.nextInt(leftSize) + 2;

@@ -35,6 +35,8 @@
         android:layout_below="@+id/linear_layout1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"
+        app:foreground_progress_thickness="60"
+        app:background_progress_thickness="60"
         style="@style/week_progress_bars"/>
 
     <include layout="@layout/week_progress_bar"

@@ -9,11 +9,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import com.orhanobut.hawk.Hawk;
+
+import java.security.InvalidKeyException;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import e.rick.duolingoclone.Data.Repository;
 import e.rick.duolingoclone.Presentation.Activity.LessonListActivity.LessonListActivity;
 import e.rick.duolingoclone.R;
 import e.rick.duolingoclone.Utils.CustomProgressBar;
+import e.rick.duolingoclone.Utils.Injection;
 
 /**
  * Created by Rick on 3/4/2018.
@@ -25,10 +31,12 @@ public class LessonCompletedActivity extends AppCompatActivity {
     RelativeLayout mainLayout;
 
     @BindView(R.id.user_progress_bar)
-    CustomProgressBar customProgressBar;
+    CustomProgressBar dailyProgressBar;
 
     @BindView(R.id.continue_button)
     Button continueButton;
+
+    Repository repository;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,11 +45,16 @@ public class LessonCompletedActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        setupProgressBar();
         initData();
     }
 
     private void initData() {
+
+        Hawk.init(this).build();
+
+        repository = Injection.provideRepository();
+
+        repository.getDailyXp();
 
         continueButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,13 +64,34 @@ public class LessonCompletedActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        setupProgressBar();
     }
 
     private void setupProgressBar() {
 
-        customProgressBar.setProgressWithAnimation(85);
+        long dailyGoal = Hawk.get("dailyGoal");
+        long dailyXp;
 
-        customProgressBar.setBackgroundProgressThickness(60);
-        customProgressBar.setForegroundProgressThickness(60);
+        if (Hawk.get("dailyXp") != null) {
+
+            dailyXp = Hawk.get("dailyXp");
+
+            dailyXp += 10;
+
+            repository.setDailyXp((int) dailyXp);
+
+        } else {
+
+            dailyXp = 10;
+
+            repository.setDailyXp((int) dailyXp);
+        }
+
+        dailyProgressBar.setMax((int) dailyGoal);
+
+        dailyProgressBar.setProgressWithAnimation((int) dailyXp);
+
+
     }
 }

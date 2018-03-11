@@ -68,13 +68,13 @@ public class Repository implements DataSource.Local, DataSource.Remote {
     }
 
     @Override
-    public void setDailyXp(String language, int xp) {
-        dataSourceRemote.setDailyXp(language, xp);
+    public void setDailyXp(int xp) {
+        dataSourceRemote.setDailyXp(xp);
     }
 
     @Override
-    public void setUserTotalXp(String language, int xp) {
-        dataSourceRemote.setUserTotalXp(language, xp);
+    public void setUserTotalXp(int xp) {
+        dataSourceRemote.setUserTotalXp(xp);
     }
 
     @Override
@@ -93,12 +93,22 @@ public class Repository implements DataSource.Local, DataSource.Remote {
     }
 
     @Override
-    public void setLessonProgress(String language, String subject, String lesson, boolean completeness) {
-        dataSourceRemote.setLessonProgress(language, subject, lesson, completeness);
+    public void setLessonProgress(String subject, String lesson, boolean completeness) {
+        dataSourceRemote.setLessonProgress(subject, lesson, completeness);
     }
 
     @Override
-    public void setLessonCompleteDate(String language, String subject, String lesson) {
-        dataSourceRemote.setLessonCompleteDate(language, subject, lesson);
+    public void setLessonCompleteDate(String subject, String lesson) {
+        dataSourceRemote.setLessonCompleteDate(subject, lesson);
+    }
+
+    @Override
+    public void getDailyGoal() {
+        dataSourceRemote.getDailyGoal();
+    }
+
+    @Override
+    public void getDailyXp() {
+        dataSourceRemote.getDailyGoal();
     }
 }

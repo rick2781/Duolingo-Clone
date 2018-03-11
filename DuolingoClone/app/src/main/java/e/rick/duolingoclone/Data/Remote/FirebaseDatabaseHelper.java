@@ -3,8 +3,14 @@ package e.rick.duolingoclone.Data.Remote;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.orhanobut.hawk.Hawk;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -73,9 +79,11 @@ public class FirebaseDatabaseHelper implements DataSource.Remote {
 
     //TODO AUTOMATE LANGUAGE RECOGNITION
     @Override
-    public void setDailyXp(String language, int xp) {
+    public void setDailyXp(int xp) {
 
         String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
+
+        String language = Hawk.get("currentLanguage");
 
         Date date = Calendar.getInstance().getTime();
 
@@ -99,7 +107,7 @@ public class FirebaseDatabaseHelper implements DataSource.Remote {
     }
 
     @Override
-    public void setUserTotalXp(String language, int xp) {
+    public void setUserTotalXp(int xp) {
 
         String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
 
@@ -176,9 +184,11 @@ public class FirebaseDatabaseHelper implements DataSource.Remote {
     }
 
     @Override
-    public void setLessonProgress(String language, String subject, String lesson, boolean completeness) {
+    public void setLessonProgress(String subject, String lesson, boolean completeness) {
 
         String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
+
+        String language = Hawk.get("currentLanguage");
 
         myRef.child("user")
                 .child(userID)
@@ -198,9 +208,11 @@ public class FirebaseDatabaseHelper implements DataSource.Remote {
     }
 
     @Override
-    public void setLessonCompleteDate(String language, String subject, String lesson) {
+    public void setLessonCompleteDate(String subject, String lesson) {
 
         String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
+
+        String language = Hawk.get("currentLanguage");
 
         Date date = Calendar.getInstance().getTime();
 
@@ -220,6 +232,60 @@ public class FirebaseDatabaseHelper implements DataSource.Remote {
                     public void onSuccess(Void aVoid) {
 
                         Log.d(TAG, "User's data has been updated");
+                    }
+                });
+    }
+
+    @Override
+    public void getDailyGoal(){
+
+        String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
+
+        myRef.child("user")
+                .child(userID)
+                .child("daily_goal")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        Hawk.put("dailyGoal", dataSnapshot.getValue());
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
+    @Override
+    public void getDailyXp() {
+
+        String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
+
+        String language = Hawk.get("currentLanguage");
+
+        Date date = Calendar.getInstance().getTime();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE", Locale.US);
+        final String dayOfWeek = dateFormat.format(date);
+
+        myRef.child("user")
+                .child(userID)
+                .child("course")
+                .child(language)
+                .child("week_xp")
+                .child(dayOfWeek)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        Hawk.put("dailyXp", dataSnapshot.getValue());
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
                     }
                 });
     }

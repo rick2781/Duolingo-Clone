@@ -29,9 +29,9 @@ public interface DataSource {
 
         void setNewLanguage(String language);
 
-        void setDailyXp(String language, int xp);
+        void setDailyXp(int xp);
 
-        void setUserTotalXp(String language, int xp);
+        void setUserTotalXp(int xp);
 
         void setLastTimeVisited();
 
@@ -39,8 +39,12 @@ public interface DataSource {
 
         void setUserInfo(UserData userData);
 
-        void setLessonProgress(String language, String subject, String lesson, boolean completeness);
+        void setLessonProgress(String subject, String lesson, boolean completeness);
 
-        void setLessonCompleteDate(String language, String subject, String lesson);
+        void setLessonCompleteDate(String subject, String lesson);
+
+        void getDailyGoal();
+
+        void getDailyXp();
     }
 }
