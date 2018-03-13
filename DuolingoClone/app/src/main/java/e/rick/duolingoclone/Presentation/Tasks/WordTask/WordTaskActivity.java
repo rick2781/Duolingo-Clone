@@ -173,8 +173,7 @@ public class WordTaskActivity extends AppCompatActivity {
 
                         Toast.makeText(WordTaskActivity.this, "You Are Correct!", Toast.LENGTH_SHORT).show();
 
-                        //fixhere
-                        progressBarValue += 100;
+                        progressBarValue += 10;
 
                         progressBar.setProgress(progressBarValue);
 

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import e.rick.duolingoclone.Presentation.Activity.SelectLanguageActivity.SelectLanguageActivity;
 import e.rick.duolingoclone.Presentation.Activity.SignInActivity.SignInActivity;
 import e.rick.duolingoclone.R;
 
@@ -41,7 +42,7 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
+                goToGetStartedScreen();
             }
         });
 
@@ -57,6 +58,12 @@ public class WelcomeActivity extends AppCompatActivity {
     private void goToSignInScreen() {
 
         Intent intent = new Intent(this, SignInActivity.class);
+        startActivity(intent);
+    }
+
+    private void goToGetStartedScreen() {
+
+        Intent intent = new Intent(this, SelectLanguageActivity.class);
         startActivity(intent);
     }
 }

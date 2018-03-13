@@ -2,23 +2,21 @@ package e.rick.duolingoclone.Presentation.Activity.LessonListActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.orhanobut.hawk.Hawk;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import e.rick.duolingoclone.Data.Repository;
-import e.rick.duolingoclone.Presentation.Activity.LessonCompletedActivity.LessonCompletedActivity;
+import e.rick.duolingoclone.Presentation.Activity.SignInActivity.SignInActivity;
 import e.rick.duolingoclone.R;
 import e.rick.duolingoclone.Utils.ActivityNavigation;
 import e.rick.duolingoclone.Utils.CustomProgressBar;
@@ -58,12 +56,16 @@ public class LessonListActivity extends AppCompatActivity {
 
     Repository repository;
 
+    Handler handler;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson_list);
 
         ButterKnife.bind(this);
+
+        checkUserValid();
 
         initData();
     }
@@ -74,11 +76,15 @@ public class LessonListActivity extends AppCompatActivity {
 
         repository = Injection.provideRepository();
 
+        handler = new Handler();
+
         repository.getDailyGoal();
         repository.getDailyXp();
         repository.getWeekXp();
+        repository.getLessonCompleted();
 
         setupBarListener();
+        setupLessonBar();
 
         Hawk.put("currentLanguage", currentLanguage.getText().toString().toLowerCase());
     }
@@ -147,5 +153,52 @@ public class LessonListActivity extends AppCompatActivity {
                 ActivityNavigation.getInstance(LessonListActivity.this).takeToRandomTask();
             }
         });
+    }
+
+    private void setupLessonBar() {
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                if (Hawk.get("basic") != null) {
+                    basic1Bar.setProgress(100);
+                }
+
+                if (Hawk.get("phrases") != null) {
+                    phrasesBar.setProgress(100);
+                }
+
+                if (Hawk.get("greeting") != null) {
+                    greetingBar.setProgress(100);
+                }
+
+                if (Hawk.get("food") != null) {
+                    foodBar.setProgress(100);
+                }
+
+                if (Hawk.get("animal") != null) {
+                    animalBar.setProgress(100);
+                }
+
+                if (Hawk.get("clothing") != null) {
+                    clothingBar.setProgress(100);
+                }
+            }
+        }, 2000);
+    }
+
+    private boolean checkUserValid() {
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user == null) {
+
+            Intent intent = new Intent(this, SignInActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+
+        return true;
     }
 }

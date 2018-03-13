@@ -1,6 +1,5 @@
 package e.rick.duolingoclone.Data.Remote;
 
-import android.content.Context;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -11,8 +10,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.orhanobut.hawk.Hawk;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -20,7 +17,6 @@ import java.util.Locale;
 
 import e.rick.duolingoclone.Data.DataSource;
 import e.rick.duolingoclone.Model.UserData;
-import e.rick.duolingoclone.Presentation.Activity.LessonListActivity.LessonListActivity;
 import e.rick.duolingoclone.Utils.Injection;
 
 /**
@@ -48,10 +44,6 @@ public class FirebaseDatabaseHelper implements DataSource.Remote {
 
         if (mDatabase == null) {
             mDatabase = FirebaseDatabase.getInstance();
-        }
-
-        if (myRef == null) {
-
             myRef = mDatabase.getReference();
         }
 
@@ -61,21 +53,25 @@ public class FirebaseDatabaseHelper implements DataSource.Remote {
     @Override
     public void setNewLanguage(String language) {
 
-        String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
 
-        myRef.child("user")
-                .child(userID)
-                .child("course")
-                .child(language)
-                .child("overall_progress")
-                .setValue(0)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
+        if (Injection.providesAuthHelper().getAuthInstance().getCurrentUser() != null) {
 
-                        Log.d(TAG, "New language has been set successfully");
-                    }
-                });
+            String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
+
+            myRef.child("user")
+                    .child(userID)
+                    .child("course")
+                    .child(language)
+                    .child("overall_progress")
+                    .setValue(0)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                            Log.d(TAG, "New language has been set successfully");
+                        }
+                    });
+        }
     }
 
 
@@ -83,276 +79,352 @@ public class FirebaseDatabaseHelper implements DataSource.Remote {
     @Override
     public void setDailyXp(int xp) {
 
-        String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
+        if (Injection.providesAuthHelper().getAuthInstance().getCurrentUser() != null) {
+            String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
 
-        String language = Hawk.get("currentLanguage");
+            String language = Hawk.get("currentLanguage");
 
-        Date date = Calendar.getInstance().getTime();
+            Date date = Calendar.getInstance().getTime();
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE", Locale.US);
-        final String dayOfWeek = dateFormat.format(date);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE", Locale.US);
+            final String dayOfWeek = dateFormat.format(date);
 
-        myRef.child("user")
-                .child(userID)
-                .child("course")
-                .child(language)
-                .child("week_xp")
-                .child(dayOfWeek)
-                .setValue(xp)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
+            myRef.child("user")
+                    .child(userID)
+                    .child("course")
+                    .child(language)
+                    .child("week_xp")
+                    .child(dayOfWeek)
+                    .setValue(xp)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
 
-                        Log.d(TAG, "XP for day " + dayOfWeek + " has been settled properly");
-                    }
-                });
+                            Log.d(TAG, "XP for day " + dayOfWeek + " has been settled properly");
+                        }
+                    });
+        }
     }
 
     @Override
     public void setUserTotalXp(int xp) {
 
-        String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
+        if (Injection.providesAuthHelper().getAuthInstance().getCurrentUser() != null) {
 
-        myRef.child("user")
-                .child(userID)
-                .child("user_xp")
-                .setValue(xp)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
+            String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
 
-                        Log.d(TAG, "Total user's xp updated");
-                    }
-                });
+            myRef.child("user")
+                    .child(userID)
+                    .child("user_xp")
+                    .setValue(xp)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                            Log.d(TAG, "Total user's xp updated");
+                        }
+                    });
+        }
     }
 
     @Override
     public void setLastTimeVisited() {
 
-        String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
+        if (Injection.providesAuthHelper().getAuthInstance().getCurrentUser() != null) {
 
-        Date date = Calendar.getInstance().getTime();
+            String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY", Locale.US);
-        String lastVisited = dateFormat.format(date);
+            Date date = Calendar.getInstance().getTime();
 
-        myRef.child("user")
-                .child(userID)
-                .child("last_visited")
-                .setValue(lastVisited)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY", Locale.US);
+            String lastVisited = dateFormat.format(date);
 
-                        Log.d(TAG, "Last time user visited has been updated");
-                    }
-                });
+            myRef.child("user")
+                    .child(userID)
+                    .child("last_visited")
+                    .setValue(lastVisited)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                            Log.d(TAG, "Last time user visited has been updated");
+                        }
+                    });
+        }
     }
 
     @Override
     public void setDailyGoal(int dailyGoal) {
 
-        String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
+        if (Injection.providesAuthHelper().getAuthInstance().getCurrentUser() != null) {
 
-        myRef.child("user")
-                .child(userID)
-                .child("daily_goal")
-                .setValue(dailyGoal)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
+            String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
 
-                        Log.d(TAG, "User's daily goal has been updated");
-                    }
-                });
+            myRef.child("user")
+                    .child(userID)
+                    .child("daily_goal")
+                    .setValue(dailyGoal)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                            Log.d(TAG, "User's daily goal has been updated");
+                        }
+                    });
+        }
     }
 
     @Override
     public void setUserInfo(UserData userData) {
 
-        String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
+        if (Injection.providesAuthHelper().getAuthInstance().getCurrentUser() != null) {
 
-        myRef.child("user")
-                .child(userID)
-                .child("user_data")
-                .setValue(userData)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
+            String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
 
-                        Log.d(TAG, "User's data has been updated");
-                    }
-                });
+            myRef.child("user")
+                    .child(userID)
+                    .child("user_data")
+                    .setValue(userData)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                            Log.d(TAG, "User's data has been updated");
+                        }
+                    });
+        }
     }
 
     @Override
-    public void setLessonProgress(String subject, String lesson, boolean completeness) {
+    public void setLessonComplete(String lesson, boolean completeness) {
 
-        String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
+        if (Injection.providesAuthHelper().getAuthInstance().getCurrentUser() != null) {
 
-        String language = Hawk.get("currentLanguage");
+            String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
 
-        myRef.child("user")
-                .child(userID)
-                .child("course")
-                .child(language)
-                .child("subjects")
-                .child(subject)
-                .child(lesson)
-                .setValue(completeness)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
+            String language = Hawk.get("currentLanguage");
 
-                        Log.d(TAG, "User's data has been updated");
-                    }
-                });
+            myRef.child("user")
+                    .child(userID)
+                    .child("course")
+                    .child(language)
+                    .child("lessons")
+                    .child(lesson)
+                    .setValue(completeness)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                            Log.d(TAG, "User has completed this lesson");
+                        }
+                    });
+        }
     }
 
     @Override
-    public void setLessonCompleteDate(String subject, String lesson) {
+    public void setLessonCompleteDate(String lesson) {
 
-        String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
+        if (Injection.providesAuthHelper().getAuthInstance().getCurrentUser() != null) {
 
-        String language = Hawk.get("currentLanguage");
+            String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
 
-        Date date = Calendar.getInstance().getTime();
+            String language = Hawk.get("currentLanguage");
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY", Locale.US);
-        String completedDate = dateFormat.format(date);
+            Date date = Calendar.getInstance().getTime();
 
-        myRef.child("user")
-                .child(userID)
-                .child("course")
-                .child(language)
-                .child("lessons")
-                .child(subject)
-                .child("completed_date")
-                .setValue(completedDate)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY", Locale.US);
+            String completedDate = dateFormat.format(date);
 
-                        Log.d(TAG, "User's data has been updated");
-                    }
-                });
+            myRef.child("user")
+                    .child(userID)
+                    .child("course")
+                    .child(language)
+                    .child("lessons")
+                    .child(lesson.toLowerCase())
+                    .child("completed_date")
+                    .setValue(completedDate)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                            Log.d(TAG, "User's data has been updated");
+                        }
+                    });
+        }
     }
 
     @Override
     public void getDailyGoal(){
 
-        String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
+        if (Injection.providesAuthHelper().getAuthInstance().getCurrentUser() != null) {
 
-        myRef.child("user")
-                .child(userID)
-                .child("daily_goal")
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+            String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
 
-                        int dailyGoal = dataSnapshot.getValue(Integer.class);
+            myRef.child("user")
+                    .child(userID)
+                    .child("daily_goal")
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        Hawk.put("dailyGoal", dailyGoal);
-                    }
+                            int dailyGoal;
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                            if (dataSnapshot.getValue() != null) {
 
-                    }
-                });
+                                dailyGoal = dataSnapshot.getValue(Integer.class);
+
+                            } else {
+
+                                dailyGoal = 20;
+                            }
+
+                            Hawk.put("dailyGoal", dailyGoal);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+        }
     }
 
     @Override
     public void getDailyXp() {
 
-        String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
+        if (Injection.providesAuthHelper().getAuthInstance().getCurrentUser() != null) {
 
-        String language = Hawk.get("currentLanguage");
+            String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
 
-        Date date = Calendar.getInstance().getTime();
+            String language = Hawk.get("currentLanguage");
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE", Locale.US);
-        final String dayOfWeek = dateFormat.format(date);
+            Date date = Calendar.getInstance().getTime();
 
-        myRef.child("user")
-                .child(userID)
-                .child("course")
-                .child(language)
-                .child("week_xp")
-                .child(dayOfWeek)
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE", Locale.US);
+            final String dayOfWeek = dateFormat.format(date);
 
-                        int dailyXp = Math.toIntExact(dataSnapshot.getValue(Long.class));
+            myRef.child("user")
+                    .child(userID)
+                    .child("course")
+                    .child(language)
+                    .child("week_xp")
+                    .child(dayOfWeek)
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        Hawk.put("dailyXp", dailyXp);
-                    }
+                            int dailyXp = 0;
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                            if (dataSnapshot.getValue() != null) {
 
-                    }
-                });
+                                dailyXp = Math.toIntExact(dataSnapshot.getValue(Long.class));
+                            }
+
+                            Hawk.put("dailyXp", dailyXp);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+        }
     }
 
     @Override
     public void getWeekXp() {
 
-        String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
+        if (Injection.providesAuthHelper().getAuthInstance().getCurrentUser() != null) {
 
-        String language = Hawk.get("currentLanguage");
+            String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
 
-        myRef.child("user")
-                .child(userID)
-                .child("course")
-                .child(language)
-                .child("week_xp")
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+            String language = Hawk.get("currentLanguage");
 
-                        for (DataSnapshot weekDays : dataSnapshot.getChildren()) {
+            myRef.child("user")
+                    .child(userID)
+                    .child("course")
+                    .child(language)
+                    .child("week_xp")
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
 
-                            int dailyXp = Math.toIntExact(weekDays.getValue(Long.class));
+                            for (DataSnapshot weekDays : dataSnapshot.getChildren()) {
 
-                            switch (weekDays.getKey()) {
+                                int dailyXp = Math.toIntExact(weekDays.getValue(Long.class));
 
-                                case "Monday":
-                                    Hawk.put("mondayXp", dailyXp);
-                                    break;
+                                switch (weekDays.getKey()) {
 
-                                case "Tuesday":
-                                    Hawk.put("tuesdayXp", dailyXp);
-                                    break;
+                                    case "Monday":
+                                        Hawk.put("mondayXp", dailyXp);
+                                        break;
 
-                                case "Wednesday":
-                                    Hawk.put("wednesdayXp", dailyXp);
-                                    break;
+                                    case "Tuesday":
+                                        Hawk.put("tuesdayXp", dailyXp);
+                                        break;
 
-                                case "Thursday":
-                                    Hawk.put("thursdayXp", dailyXp);
-                                    break;
+                                    case "Wednesday":
+                                        Hawk.put("wednesdayXp", dailyXp);
+                                        break;
 
-                                case "Friday":
-                                    Hawk.put("fridayXp", dailyXp);
-                                    break;
+                                    case "Thursday":
+                                        Hawk.put("thursdayXp", dailyXp);
+                                        break;
 
-                                case "Saturday":
-                                    Hawk.put("saturdayXp", dailyXp);
-                                    break;
+                                    case "Friday":
+                                        Hawk.put("fridayXp", dailyXp);
+                                        break;
 
-                                case "Sunday":
-                                    Hawk.put("sundayXp", dailyXp);
-                                    break;
+                                    case "Saturday":
+                                        Hawk.put("saturdayXp", dailyXp);
+                                        break;
+
+                                    case "Sunday":
+                                        Hawk.put("sundayXp", dailyXp);
+                                        break;
+                                }
                             }
                         }
-                    }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
 
-                    }
-                });
+                        }
+                    });
+        }
+    }
+
+    @Override
+    public void getLessonCompleted() {
+
+        if (Injection.providesAuthHelper().getAuthInstance().getCurrentUser() != null) {
+
+            String userID = Injection.providesAuthHelper().getAuthInstance().getCurrentUser().getUid();
+
+            String language = Hawk.get("currentLanguage");
+
+            myRef.child("user")
+                    .child(userID)
+                    .child("course")
+                    .child(language)
+                    .child("lessons")
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
+
+                                Hawk.put(ds.getKey().toString(), ds.getValue());
+                            }
+
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+        }
     }
 }

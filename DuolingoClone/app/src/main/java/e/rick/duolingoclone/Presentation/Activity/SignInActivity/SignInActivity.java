@@ -32,6 +32,8 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import e.rick.duolingoclone.Presentation.Activity.LessonListActivity.LessonListActivity;
+import e.rick.duolingoclone.Presentation.Activity.WelcomeActivity.WelcomeActivity;
 import e.rick.duolingoclone.Presentation.Tasks.WordTask.WordTaskActivity;
 import e.rick.duolingoclone.R;
 import e.rick.duolingoclone.Utils.ActivityNavigation;
@@ -58,9 +60,6 @@ public class SignInActivity extends AppCompatActivity {
 
     @BindView(R.id.google_signin)
     SignInButton googleSignIn;
-
-    @BindView(R.id.progress_bar)
-    ProgressBar progressBar;
 
     @BindView(R.id.back_button)
     ImageView backButton;
@@ -94,7 +93,8 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                onBackPressed();
+                Intent intent = new Intent(SignInActivity.this, WelcomeActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -112,8 +112,6 @@ public class SignInActivity extends AppCompatActivity {
 
                     if (checkEmail(email) && checkPassword(password)) {
 
-                        showProgress(true);
-
                         mAuth.signInWithEmailAndPassword(email, password)
                                 .addOnCompleteListener(SignInActivity.this, new OnCompleteListener<AuthResult>() {
                                     @Override
@@ -124,12 +122,10 @@ public class SignInActivity extends AppCompatActivity {
                                             Toast.makeText(context, getString(R.string.auth_failed),
                                                     Toast.LENGTH_SHORT).show();
 
-                                            showProgress(false);
-
                                         } else {
 
-                                           //take user to main screen
-                                            Toast.makeText(context, "it worked", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(SignInActivity.this, LessonListActivity.class);
+                                            startActivity(intent);
                                         }
                                     }
                                 });
@@ -180,18 +176,6 @@ public class SignInActivity extends AppCompatActivity {
         }
 
         return true;
-    }
-
-    private void showProgress(boolean show) {
-
-        if (show) {
-
-            progressBar.setVisibility(View.VISIBLE);
-
-        } else {
-
-            progressBar.setVisibility(View.GONE);
-        }
     }
 
     private void instantiateGoogle() {
@@ -254,11 +238,5 @@ public class SignInActivity extends AppCompatActivity {
                         }
                     }
                 });
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        showProgress(false);
     }
 }

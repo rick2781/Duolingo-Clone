@@ -29,7 +29,7 @@ import e.rick.duolingoclone.Utils.Injection;
  * Created by Rick on 3/4/2018.
  */
 
-public class LessonCompletedActivity extends AppCompatActivity {
+public class LessonCompletedActivity extends AppCompatActivity{
 
     @BindView(R.id.main_layout)
     RelativeLayout mainLayout;
@@ -108,6 +108,11 @@ public class LessonCompletedActivity extends AppCompatActivity {
 
         int dailyXp;
 
+        String lesson = Hawk.get("lesson");
+
+        repository.setLessonComplete(lesson, true);
+        repository.getWeekXp();
+
         if (Hawk.get("dailyXp") != null) {
 
             dailyXp = Hawk.get("dailyXp");
@@ -127,7 +132,7 @@ public class LessonCompletedActivity extends AppCompatActivity {
 
         dailyProgressBar.setMax(dailyGoal);
 
-        dailyProgressBar.setProgressWithAnimation(dailyXp, 20000);
+        dailyProgressBar.setProgressWithAnimation(dailyXp, 2000);
     }
 
     private void setupWeekBar() {

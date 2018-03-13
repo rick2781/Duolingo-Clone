@@ -39,14 +39,16 @@ public interface DataSource {
 
         void setUserInfo(UserData userData);
 
-        void setLessonProgress(String subject, String lesson, boolean completeness);
+        void setLessonComplete(String lesson, boolean completeness);
 
-        void setLessonCompleteDate(String subject, String lesson);
+        void setLessonCompleteDate(String lesson);
 
         void getDailyGoal();
 
         void getDailyXp();
 
         void getWeekXp();
+
+        void getLessonCompleted();
     }
 }

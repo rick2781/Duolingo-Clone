@@ -93,13 +93,13 @@ public class Repository implements DataSource.Local, DataSource.Remote {
     }
 
     @Override
-    public void setLessonProgress(String subject, String lesson, boolean completeness) {
-        dataSourceRemote.setLessonProgress(subject, lesson, completeness);
+    public void setLessonComplete(String lesson, boolean completeness) {
+        dataSourceRemote.setLessonComplete(lesson, completeness);
     }
 
     @Override
-    public void setLessonCompleteDate(String subject, String lesson) {
-        dataSourceRemote.setLessonCompleteDate(subject, lesson);
+    public void setLessonCompleteDate(String lesson) {
+        dataSourceRemote.setLessonCompleteDate(lesson);
     }
 
     @Override
@@ -115,5 +115,10 @@ public class Repository implements DataSource.Local, DataSource.Remote {
     @Override
     public void getWeekXp() {
         dataSourceRemote.getWeekXp();
+    }
+
+    @Override
+    public void getLessonCompleted() {
+        dataSourceRemote.getLessonCompleted();
     }
 }
