@@ -1,6 +1,6 @@
 # Duolingo Clone
 
-This application is my project's official repository. In this project we will be able to develop a Duolingo Clone App.
+This is my project's official repository. In this project we will be able to develop a Duolingo Clone App.
 
 Feel free to copy, fork and pretty much do whatever you want with it.
 
