@@ -1,11 +1,9 @@
 package e.rick.duolingoclone.Presentation.Tasks.WordTask;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.PorterDuff;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -30,10 +28,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import e.rick.duolingoclone.Data.Repository;
 import e.rick.duolingoclone.Model.QuestionModel;
-import e.rick.duolingoclone.Presentation.Activity.LessonListActivity.LessonListActivity;
-import e.rick.duolingoclone.Presentation.Activity.SelectLanguageActivity.SelectLanguageActivity;
-import e.rick.duolingoclone.Presentation.Activity.WelcomeActivity.WelcomeActivity;
-import e.rick.duolingoclone.Presentation.Tasks.TapPairTask.TapPairActivity;
 import e.rick.duolingoclone.R;
 import e.rick.duolingoclone.Presentation.Tasks.CustomWord;
 import e.rick.duolingoclone.Utils.ActivityNavigation;

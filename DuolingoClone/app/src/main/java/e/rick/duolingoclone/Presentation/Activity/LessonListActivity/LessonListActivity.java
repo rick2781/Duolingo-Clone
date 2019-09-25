@@ -3,12 +3,13 @@ package e.rick.duolingoclone.Presentation.Activity.LessonListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.orhanobut.hawk.Hawk;
@@ -65,9 +66,9 @@ public class LessonListActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        checkUserValid();
+//        checkUserValid();
 
-        initData();
+//        initData();
     }
 
     private void initData() {

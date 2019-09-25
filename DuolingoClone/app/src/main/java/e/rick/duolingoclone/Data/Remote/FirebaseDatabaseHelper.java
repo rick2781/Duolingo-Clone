@@ -416,8 +416,6 @@ public class FirebaseDatabaseHelper implements DataSource.Remote {
 
                                 Hawk.put(ds.getKey().toString(), ds.getValue());
                             }
-
-
                         }
 
                         @Override
