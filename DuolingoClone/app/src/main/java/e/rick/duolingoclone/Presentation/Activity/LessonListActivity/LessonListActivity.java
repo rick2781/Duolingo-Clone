@@ -68,7 +68,7 @@ public class LessonListActivity extends AppCompatActivity {
 
 //        checkUserValid();
 
-//        initData();
+        initData();
     }
 
     private void initData() {
