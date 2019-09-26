@@ -13,24 +13,24 @@
         android:name=".DuolingoApp"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".Presentation.Tasks.WordTask.WordTaskActivity" />
+        <activity android:name=".ui.tasks.WordTask.WordTaskActivity" />
 
-        <activity android:name=".Presentation.Tasks.TranslateSentenceTask.TSTaskActivity"
+        <activity android:name=".ui.tasks.TranslateSentenceTask.TSTaskActivity"
             android:windowSoftInputMode="adjustPan"/>
 
-        <activity android:name=".Presentation.Tasks.TapPairTask.TapPairActivity" />
+        <activity android:name=".ui.tasks.TapPairTask.TapPairActivity" />
 
-        <activity android:name=".Presentation.Activity.LessonCompletedActivity.LessonCompletedActivity" />
+        <activity android:name=".ui.activity.LessonCompletedActivity.LessonCompletedActivity" />
 
-        <activity android:name=".Presentation.Activity.WelcomeActivity.WelcomeActivity" />
+        <activity android:name=".ui.activity.WelcomeActivity.WelcomeActivity" />
 
-        <activity android:name=".Presentation.Activity.SignInActivity.SignInActivity" />
+        <activity android:name=".ui.activity.SignInActivity.SignInActivity" />
 
-        <activity android:name=".Presentation.Activity.SelectLanguageActivity.SelectLanguageActivity" />
+        <activity android:name=".ui.activity.SelectLanguageActivity.SelectLanguageActivity" />
 
-        <activity android:name=".Presentation.Activity.PickDailyGoalActivity.PickDailyGoalActivity" />
+        <activity android:name=".ui.activity.PickDailyGoalActivity.PickDailyGoalActivity" />
 
-        <activity android:name=".Presentation.Activity.LessonListActivity.LessonListActivity">
+        <activity android:name=".ui.activity.lessonlistactivity.LessonListActivity">
 
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />

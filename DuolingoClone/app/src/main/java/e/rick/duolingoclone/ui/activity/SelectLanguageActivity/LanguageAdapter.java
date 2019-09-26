@@ -1,4 +1,4 @@
-package e.rick.duolingoclone.Presentation.Activity.SelectLanguageActivity;
+package e.rick.duolingoclone.ui.activity.SelectLanguageActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +13,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import e.rick.duolingoclone.Data.Repository;
-import e.rick.duolingoclone.Presentation.Activity.PickDailyGoalActivity.PickDailyGoalActivity;
+import e.rick.duolingoclone.ui.activity.PickDailyGoalActivity.PickDailyGoalActivity;
 import e.rick.duolingoclone.R;
 import e.rick.duolingoclone.Utils.Injection;
 

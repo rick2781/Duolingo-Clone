@@ -1,4 +1,4 @@
-package e.rick.duolingoclone.Presentation.Tasks.TranslateSentenceTask;
+package e.rick.duolingoclone.ui.tasks.TranslateSentenceTask;
 
 import android.content.Context;
 import android.os.Bundle;

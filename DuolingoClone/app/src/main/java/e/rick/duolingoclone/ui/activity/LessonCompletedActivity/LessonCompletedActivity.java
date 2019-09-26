@@ -1,4 +1,4 @@
-package e.rick.duolingoclone.Presentation.Activity.LessonCompletedActivity;
+package e.rick.duolingoclone.ui.activity.LessonCompletedActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import com.orhanobut.hawk.Hawk;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import e.rick.duolingoclone.Data.Repository;
-import e.rick.duolingoclone.Presentation.Activity.LessonListActivity.LessonListActivity;
+import e.rick.duolingoclone.ui.activity.lessonlistactivity.LessonListActivity;
 import e.rick.duolingoclone.R;
 import e.rick.duolingoclone.Utils.CustomProgressBar;
 import e.rick.duolingoclone.Utils.Injection;

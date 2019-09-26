@@ -1,4 +1,4 @@
-package e.rick.duolingoclone.Presentation.Tasks.TapPairTask;
+package e.rick.duolingoclone.ui.tasks.TapPairTask;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -24,7 +24,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import e.rick.duolingoclone.Data.Repository;
 import e.rick.duolingoclone.Model.PairModel;
-import e.rick.duolingoclone.Presentation.Tasks.CustomWord;
+import e.rick.duolingoclone.ui.tasks.CustomWord;
 import e.rick.duolingoclone.R;
 import e.rick.duolingoclone.Utils.ActivityNavigation;
 import e.rick.duolingoclone.Utils.Injection;

@@ -49,8 +49,6 @@ dependencies {
     //Recycler View
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
-    //Event Bus
-    implementation 'org.greenrobot:eventbus:3.1.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 

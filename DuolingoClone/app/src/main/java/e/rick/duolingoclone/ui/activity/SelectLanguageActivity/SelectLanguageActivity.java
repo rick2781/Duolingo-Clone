@@ -1,4 +1,4 @@
-package e.rick.duolingoclone.Presentation.Activity.SelectLanguageActivity;
+package e.rick.duolingoclone.ui.activity.SelectLanguageActivity;
 
 import android.os.Bundle;
 import androidx.annotation.Nullable;

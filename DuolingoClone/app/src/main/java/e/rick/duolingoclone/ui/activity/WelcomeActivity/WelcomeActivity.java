@@ -1,4 +1,4 @@
-package e.rick.duolingoclone.Presentation.Activity.WelcomeActivity;
+package e.rick.duolingoclone.ui.activity.WelcomeActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import e.rick.duolingoclone.Presentation.Activity.SelectLanguageActivity.SelectLanguageActivity;
-import e.rick.duolingoclone.Presentation.Activity.SignInActivity.SignInActivity;
+import e.rick.duolingoclone.ui.activity.SelectLanguageActivity.SelectLanguageActivity;
+import e.rick.duolingoclone.ui.activity.SignInActivity.SignInActivity;
 import e.rick.duolingoclone.R;
 
 /**

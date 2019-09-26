@@ -1,4 +1,4 @@
-package e.rick.duolingoclone.Presentation.Tasks.WordTask;
+package e.rick.duolingoclone.ui.tasks.WordTask;
 
 import android.content.Context;
 
@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
 import e.rick.duolingoclone.Data.Repository;
 import e.rick.duolingoclone.Model.QuestionModel;
 import e.rick.duolingoclone.R;
-import e.rick.duolingoclone.Presentation.Tasks.CustomWord;
+import e.rick.duolingoclone.ui.tasks.CustomWord;
 import e.rick.duolingoclone.Utils.ActivityNavigation;
 import e.rick.duolingoclone.Utils.Injection;
 

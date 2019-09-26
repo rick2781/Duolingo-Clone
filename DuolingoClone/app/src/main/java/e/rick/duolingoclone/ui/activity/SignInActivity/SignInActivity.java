@@ -1,4 +1,4 @@
-package e.rick.duolingoclone.Presentation.Activity.SignInActivity;
+package e.rick.duolingoclone.ui.activity.SignInActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -28,8 +28,8 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import e.rick.duolingoclone.Presentation.Activity.LessonListActivity.LessonListActivity;
-import e.rick.duolingoclone.Presentation.Activity.WelcomeActivity.WelcomeActivity;
+import e.rick.duolingoclone.ui.activity.lessonlistactivity.LessonListActivity;
+import e.rick.duolingoclone.ui.activity.WelcomeActivity.WelcomeActivity;
 import e.rick.duolingoclone.R;
 import e.rick.duolingoclone.Utils.ActivityNavigation;
 import e.rick.duolingoclone.Utils.Injection;

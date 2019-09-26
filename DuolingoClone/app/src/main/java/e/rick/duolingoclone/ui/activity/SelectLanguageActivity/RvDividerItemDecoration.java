@@ -1,4 +1,4 @@
-package e.rick.duolingoclone.Presentation.Activity.SelectLanguageActivity;
+package e.rick.duolingoclone.ui.activity.SelectLanguageActivity;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;

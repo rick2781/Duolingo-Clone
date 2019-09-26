@@ -1,4 +1,4 @@
-package e.rick.duolingoclone.Presentation.Activity.PickDailyGoalActivity;
+package e.rick.duolingoclone.ui.activity.PickDailyGoalActivity;
 
 import android.os.Bundle;
 import androidx.annotation.Nullable;

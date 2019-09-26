@@ -1,4 +1,4 @@
-package e.rick.duolingoclone.Presentation.Tasks;
+package e.rick.duolingoclone.ui.tasks;
 
 import android.content.Context;
 import androidx.core.content.ContextCompat;
@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import com.nex3z.flowlayout.FlowLayout;
 
 import e.rick.duolingoclone.R;
-import e.rick.duolingoclone.Presentation.Tasks.WordTask.CustomLayout;
+import e.rick.duolingoclone.ui.tasks.WordTask.CustomLayout;
 
 /**
  * Created by Rick on 2/26/2018.
